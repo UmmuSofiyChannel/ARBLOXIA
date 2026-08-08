@@ -1,0 +1,1 @@
+Jana targets.mind menggunakan WEBAR/compile-targets.html, kemudian letakkan fail itu di folder ini.

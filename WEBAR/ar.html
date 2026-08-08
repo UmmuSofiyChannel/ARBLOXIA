@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>ARBLOXIA WebAR · Kad Ejen</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <style>
+    *{box-sizing:border-box} body{margin:0;overflow:hidden;font-family:Arial,sans-serif;background:#000;color:#fff}
+    .ui{position:fixed;inset:0;z-index:20;pointer-events:none}.top{position:absolute;left:12px;right:12px;top:12px;display:flex;justify-content:space-between;gap:10px}.pill{background:#061b35e8;border:1px solid #22cfff;border-radius:999px;padding:10px 14px;font-weight:800;box-shadow:0 8px 24px #0008}
+    #guide{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(76vw,420px);aspect-ratio:1;border:3px dashed #ffca3a;border-radius:22px;box-shadow:0 0 0 999px #0005,0 0 30px #ffca3a66;display:grid;place-items:center;text-align:center;padding:18px}
+    #guide span{background:#061b35dd;border-radius:12px;padding:10px 14px} .verifyFallback{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);pointer-events:auto;background:#0b3157;border:1px solid #ffca3a;color:#fff;border-radius:14px;padding:12px 16px;font-weight:800;display:none;max-width:88vw}.result{position:absolute;left:12px;right:12px;bottom:18px;background:linear-gradient(135deg,#061b35f2,#0c3760f2);border:2px solid #39e58c;border-radius:22px;padding:18px;box-shadow:0 16px 40px #000a;pointer-events:auto;transform:translateY(150%);transition:.35s}
+    .result.show{transform:translateY(0)} .mission{color:#ffca3a;font-size:13px;font-weight:900;letter-spacing:2px}.arabic{font-family:'Arial',sans-serif;font-size:28px;line-height:1.7;text-align:center;color:#fff;margin:8px 0}.result p{margin:5px 0;text-align:center}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.actions button,.actions a{border:0;border-radius:13px;padding:13px 10px;text-align:center;font-weight:900;text-decoration:none;color:#fff;cursor:pointer}.listen{background:#176f9e}.open{background:linear-gradient(90deg,#20bfe4,#2d87ed)}
+    #startOverlay{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at top,#103c67,#020817 65%);display:grid;place-items:center;padding:24px}.startCard{width:min(92vw,540px);text-align:center;background:#061b35;border:1px solid #ffca3a;border-radius:24px;padding:28px;box-shadow:0 20px 70px #000}.startCard h1{color:#ffca3a}.startCard button{width:100%;border:0;border-radius:14px;padding:16px;font-size:17px;font-weight:900;background:linear-gradient(90deg,#20bfe4,#2d87ed);color:#fff}.small{font-size:13px;color:#c8d8e8;line-height:1.5}
+    .back{pointer-events:auto;color:#fff;text-decoration:none}.hidden{display:none!important}
+  </style>
+</head>
+<body>
+<div id="startOverlay"><div class="startCard"><h1>📡 ARBLOXIA WebAR</h1><p>Imbas Kad Ejen Mission 01 atau Mission 02 untuk mengaktifkan dossier.</p><button id="startBtn">📷 MULAKAN KAMERA</button><p class="small">Kamera memerlukan laman HTTPS apabila dibuka pada telefon. GitHub Pages boleh digunakan.</p></div></div>
+<div class="ui">
+  <div class="top"><a class="pill back" id="backToMission" href="../index.html">← Kembali ke Misi</a><div class="pill" id="status">Sedia mengimbas</div></div>
+  <div id="guide"><span>Pastikan KESELURUHAN kad berada dalam kotak dan kamera tidak terlalu dekat.</span></div>
+  <button id="verifyFallback" class="verifyFallback">✅ Kad di hadapan kamera tetapi sukar dikesan? Sahkan Kad Misi</button>
+  <section class="result" id="result">
+    <div class="mission" id="missionLabel">MISSION</div>
+    <p class="arabic" id="question" dir="rtl"></p>
+    <p class="arabic" id="answer" dir="rtl"></p>
+    <p id="malay"></p>
+    <div class="actions"><button class="listen" id="listenBtn">🔊 Dengar Audio</button><a class="open" id="openMission" href="../index.html">🚀 Buka Misi</a></div>
+  </section>
+</div>
+<a-scene id="scene" mindar-image="imageTargetSrc: targets/targets.mind; autoStart: false; uiScanning: no; uiLoading: no; uiError: no; filterMinCF: 0.0001; filterBeta: 0.01" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled:false" device-orientation-permission-ui="enabled:false" embedded>
+  <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
+  <a-entity id="target0" mindar-image-target="targetIndex: 0">
+    <a-plane color="#06284a" opacity="0.92" width="1" height="0.58" position="0 0 0.02"></a-plane>
+    <a-text value="MISSION 01" align="center" color="#ffca3a" width="2.2" position="0 0.18 0.04"></a-text>
+    <a-text value="AGENT DETECTED" align="center" color="#39e58c" width="2" position="0 0 0.04"></a-text>
+    <a-circle color="#24c9ef" radius="0.09" position="0 -0.18 0.05" animation="property:scale;from:1 1 1;to:1.35 1.35 1.35;dur:700;dir:alternate;loop:true"></a-circle>
+  </a-entity>
+  <a-entity id="target1" mindar-image-target="targetIndex: 1">
+    <a-plane color="#06284a" opacity="0.92" width="1" height="0.58" position="0 0 0.02"></a-plane>
+    <a-text value="MISSION 02" align="center" color="#ffca3a" width="2.2" position="0 0.18 0.04"></a-text>
+    <a-text value="AGENT DETECTED" align="center" color="#39e58c" width="2" position="0 0 0.04"></a-text>
+    <a-circle color="#ff4e8a" radius="0.09" position="0 -0.18 0.05" animation="property:scale;from:1 1 1;to:1.35 1.35 1.35;dur:700;dir:alternate;loop:true"></a-circle>
+  </a-entity>
+</a-scene>
+<audio id="audio01" src="../AUDIO/GURU/mission01_sentence.m4a" preload="auto"></audio>
+<audio id="audio02" src="../AUDIO/GURU/mission02_dialog01.m4a" preload="auto"></audio>
+<script>
+const missions={
+  0:{label:'EJEN MISSION 01 · PENGANGKUTAN',q:'مَاذَا تَرْكَبُ؟',a:'أَنَا أَرْكَبُ السَّفِينَةَ.',ms:'Apakah yang kamu naiki? Saya menaiki kapal.',audio:'audio01',hash:'mission01'},
+  1:{label:'EJEN MISSION 02 · DESTINASI & MASA',q:'إِلَى أَيْنَ تُسَافِرُ يَا عَلِي؟',a:'أَنَا أُسَافِرُ إِلَى كِلَنْتَنْ.',ms:'Ke manakah kamu bermusafir, Ali? Saya bermusafir ke Kelantan.',audio:'audio02',hash:'mission02'}
+};
+const params=new URLSearchParams(window.location.search);
+const requestedMission=params.get('mission')||'';
+const returnHash=params.get('return')||'';
+const backLink=document.getElementById('backToMission');
+if(backLink) backLink.href='../index.html'+(returnHash||'');
+let active=null;const result=document.getElementById('result'),guide=document.getElementById('guide'),status=document.getElementById('status');
+if(requestedMission==='01') status.textContent='Sedia · Kad Mission 01';
+if(requestedMission==='02') status.textContent='Sedia · Kad Mission 02';
+const startText=document.querySelector('#startOverlay .startCard p');
+if(startText){
+  if(requestedMission==='01') startText.textContent='Imbas Kad Ejen Mission 01 untuk mengaktifkan dossier Pengangkutan.';
+  if(requestedMission==='02') startText.textContent='Imbas Kad Ejen Mission 02 untuk mengaktifkan dossier Destinasi & Masa.';
+}
+function markMission01ScanComplete(){
+  if(requestedMission!=='01') return;
+  try{
+    const key='arbloxia_progress_v2';
+    const state=JSON.parse(localStorage.getItem(key)||'{}');
+    state.completed=state.completed||{};
+    if(!state.completed.scan){
+      state.completed.scan=true;
+      state.progress=Math.min(100, Number(state.progress||0)+15);
+      state.xp=Number(state.xp||0)+10;
+      if(state.progress>=100) state.mission02Unlocked=true;
+      localStorage.setItem(key,JSON.stringify(state));
+    }
+  }catch(e){ console.warn('Scan checkpoint tidak dapat disimpan',e); }
+}
+
+let autoReturnTimer=null;
+function returnToMissionAfterAudio(audio){
+  if(!requestedMission) return;
+  const go=()=>{
+    if(autoReturnTimer) clearTimeout(autoReturnTimer);
+    status.textContent='✅ Imbasan lengkap · Kembali ke Mission '+requestedMission+'...';
+    autoReturnTimer=setTimeout(()=>{
+      window.location.href='../index.html#mission'+requestedMission;
+    },1200);
+  };
+  audio.addEventListener('ended',go,{once:true});
+}
+
+function showMission(index){
+  // Kad Mission 01 dan 02 berkongsi banyak ciri visual.
+  // Jika pengimbas dibuka daripada misi tertentu, kekalkan dossier misi tersebut
+  // walaupun MindAR tersalah mengklasifikasikan target.
+  let resolvedIndex=index;
+  if(requestedMission==='01') resolvedIndex=0;
+  if(requestedMission==='02') resolvedIndex=1;
+
+  active=missions[resolvedIndex];
+  document.getElementById('missionLabel').textContent=active.label;
+  document.getElementById('question').textContent=active.q;
+  document.getElementById('answer').textContent=active.a;
+  document.getElementById('malay').textContent=active.ms;
+  document.getElementById('openMission').href='../index.html#'+active.hash;
+  result.classList.add('show');
+  guide.classList.add('hidden');
+  status.textContent='✅ Kad Ejen dikesan';
+  const fb=document.getElementById('verifyFallback'); if(fb) fb.style.display='none';
+  if(navigator.vibrate)navigator.vibrate(80);
+  if(requestedMission==='01') markMission01ScanComplete();
+  const au=document.getElementById(active.audio);
+  au.currentTime=0;
+  returnToMissionAfterAudio(au);
+  au.play().catch(()=>{
+    status.textContent='✅ Kad Ejen dikesan · Tekan Dengar Audio untuk meneruskan';
+  });
+}
+function hideMission(){ if(!active){ guide.classList.remove('hidden'); status.textContent='Cari Kad Ejen...'; } }
+document.getElementById('listenBtn').onclick=()=>{if(active){const au=document.getElementById(active.audio);au.currentTime=0;returnToMissionAfterAudio(au);au.play();}};
+const fallbackBtn=document.getElementById('verifyFallback');
+if(requestedMission && fallbackBtn){
+  fallbackBtn.textContent='✅ SAHKAN KAD MISSION '+requestedMission;
+  setTimeout(()=>{ if(!active) fallbackBtn.style.display='block'; },8000);
+  fallbackBtn.onclick=()=>{
+    fallbackBtn.style.display='none';
+    // Fallback ini hanya tersedia apabila pengguna datang daripada misi tertentu.
+    showMission(requestedMission==='02'?1:0);
+  };
+}
+
+document.getElementById('startBtn').onclick=async()=>{document.getElementById('startOverlay').classList.add('hidden');status.textContent='Memulakan kamera...';try{await document.querySelector('#scene').systems['mindar-image-system'].start();status.textContent='Cari Kad Ejen...';}catch(e){console.error(e);status.textContent='❌ Kamera/targets.mind tidak tersedia';document.getElementById('startOverlay').classList.remove('hidden');}};
+document.querySelector('#target0').addEventListener('targetFound',()=>showMission(0));document.querySelector('#target0').addEventListener('targetLost',hideMission);document.querySelector('#target1').addEventListener('targetFound',()=>showMission(1));document.querySelector('#target1').addEventListener('targetLost',hideMission);
+</script>
+</body>
+</html>

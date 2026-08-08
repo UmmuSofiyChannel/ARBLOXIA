@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ARBLOXIA · Jana targets.mind</title>
+  <style>
+    :root{color-scheme:dark;--navy:#061b35;--cyan:#27d7ff;--gold:#ffca3a;--green:#39e58c}
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(160deg,#020c1b,#0a2f55);color:#fff;min-height:100vh;padding:24px}
+    .card{max-width:850px;margin:auto;background:rgba(5,27,53,.94);border:1px solid #2acff5;border-radius:24px;padding:28px;box-shadow:0 20px 60px #0008}
+    h1{color:var(--gold);margin-top:0} .targets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:22px 0}
+    .target{background:#0b3156;border:1px solid #2778a6;border-radius:16px;padding:12px;text-align:center}.target img{width:100%;border-radius:12px}
+    button{width:100%;border:0;border-radius:14px;padding:16px;font-weight:800;font-size:17px;background:linear-gradient(90deg,#20bee5,#2d87ed);color:#fff;cursor:pointer}
+    button:disabled{opacity:.55;cursor:wait}.progress{height:16px;background:#132f4a;border-radius:999px;overflow:hidden;margin:18px 0}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green),var(--gold));transition:width .25s}
+    #status{min-height:28px;color:#d8f7ff}.note{background:#112d45;border-left:5px solid var(--gold);padding:14px;border-radius:10px;margin-top:18px;line-height:1.55}
+    @media(max-width:650px){.targets{grid-template-columns:1fr}.card{padding:18px}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>🎯 Jana fail targets.mind</h1>
+    <p>Halaman ini akan menyusun dua Kad Ejen sebagai sasaran WebAR mengikut urutan berikut:</p>
+    <div class="targets">
+      <div class="target"><img src="cards/mission01.jpg" alt="Kad Mission 01"><strong>Target 0 · Mission 01</strong></div>
+      <div class="target"><img src="cards/mission02.jpg" alt="Kad Mission 02"><strong>Target 1 · Mission 02</strong></div>
+    </div>
+    <button id="compileBtn">⚙️ JANA & MUAT TURUN targets.mind</button>
+    <div class="progress"><div class="fill" id="fill"></div></div>
+    <p id="status">Pastikan komputer disambungkan kepada Internet dan halaman dibuka melalui Live Server.</p>
+    <div class="note"><b>Selepas fail dimuat turun:</b> pindahkan fail <code>targets.mind</code> ke folder <code>WEBAR/targets/</code>. Jangan tukar urutan atau nama dua gambar kad selepas fail dijana.</div>
+  </main>
+<script type="module">
+  import { Compiler } from 'https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/src/image-target/compiler.js';
+  const button=document.getElementById('compileBtn');
+  const status=document.getElementById('status');
+  const fill=document.getElementById('fill');
+  const toImage=(src)=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src+'?v='+Date.now();});
+  button.addEventListener('click',async()=>{
+    button.disabled=true; status.textContent='Memuatkan Kad Ejen...'; fill.style.width='3%';
+    try{
+      const images=[await toImage('cards/mission01.jpg'),await toImage('cards/mission02.jpg')];
+      const compiler=new Compiler();
+      status.textContent='Sedang menganalisis ciri visual kad...';
+      await compiler.compileImageTargets(images,(p)=>{fill.style.width=Math.max(3,p)+'%';status.textContent='Kemajuan: '+p.toFixed(1)+'%';});
+      const buffer=await compiler.exportData();
+      const blob=new Blob([buffer],{type:'application/octet-stream'});
+      const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='targets.mind'; a.click();
+      setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+      fill.style.width='100%'; status.textContent='✅ targets.mind berjaya dijana. Pindahkan ke WEBAR/targets/';
+    }catch(err){console.error(err);status.textContent='❌ Gagal menjana fail. Pastikan Internet aktif dan buka melalui Live Server.';fill.style.width='0';}
+    finally{button.disabled=false;}
+  });
+</script>
+</body>
+</html>

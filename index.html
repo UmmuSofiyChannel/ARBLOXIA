@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Jumlah Basitoh | ARBLOXIA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+
+      background:
+        radial-gradient(
+          circle at top,
+          #173f73 0%,
+          #07172e 48%,
+          #020713 100%
+        );
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+      padding: 25px 0 60px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
+    .back-button {
+      padding: 11px 18px;
+      border: 1px solid #38d6ff;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      background: rgba(56, 214, 255, 0.12);
+    }
+
+    .agent-card {
+      padding: 11px 18px;
+      border: 1px solid #ffd15c;
+      border-radius: 10px;
+      color: #ffd15c;
+      font-weight: bold;
+      background: rgba(255, 209, 92, 0.10);
+    }
+
+    .mission-header {
+      padding: 30px 20px;
+      text-align: center;
+      border: 1px solid rgba(56, 214, 255, 0.55);
+      border-radius: 22px;
+      background: rgba(5, 24, 52, 0.88);
+    }
+
+    .mission-code {
+      margin-bottom: 10px;
+      color: #38d6ff;
+      letter-spacing: 4px;
+      font-size: 14px;
+    }
+
+    .mission-header h1 {
+      font-size: clamp(28px, 6vw, 52px);
+      margin-bottom: 10px;
+    }
+
+    .arabic-title {
+      direction: rtl;
+      font-family:
+        "Traditional Arabic",
+        "Noto Naskh Arabic",
+        serif;
+
+      font-size: clamp(42px, 8vw, 70px);
+      color: #ffd15c;
+      margin: 10px 0;
+    }
+
+    .topic-label {
+      display: inline-block;
+      padding: 8px 18px;
+      margin-top: 8px;
+      border-radius: 25px;
+      color: #07172e;
+      background: #ffd15c;
+      font-weight: bold;
+    }
+
+    .mission-description {
+      max-width: 700px;
+      margin: 18px auto 0;
+      color: #d9e7f6;
+      line-height: 1.7;
+    }
+
+    .mission-flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .flow-item {
+      padding: 15px 10px;
+      text-align: center;
+      border: 1px solid rgba(56, 214, 255, 0.35);
+      border-radius: 14px;
+      background: rgba(5, 24, 52, 0.85);
+      color: #d9e7f6;
+    }
+
+    .flow-icon {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      margin: 35px 0 18px;
+      text-align: center;
+      color: #38d6ff;
+      font-size: 28px;
+    }
+
+    .textbook-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .textbook-card {
+      overflow: hidden;
+      border: 1px solid rgba(56, 214, 255, 0.35);
+      border-radius: 18px;
+      background: rgba(5, 24, 52, 0.9);
+    }
+
+    .textbook-card img {
+      display: block;
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .textbook-content {
+      padding: 20px;
+    }
+
+    .textbook-content h3 {
+      color: #ffd15c;
+      margin-bottom: 12px;
+    }
+
+    .arabic-example {
+      direction: rtl;
+      text-align: center;
+      font-family:
+        "Traditional Arabic",
+        "Noto Naskh Arabic",
+        serif;
+
+      font-size: 29px;
+      line-height: 1.8;
+      color: white;
+      margin: 12px 0;
+    }
+
+    .meaning {
+      text-align: center;
+      color: #d9e7f6;
+      line-height: 1.6;
+    }
+
+    .open-button {
+      display: block;
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      background: linear-gradient(
+        90deg,
+        #16b9e3,
+        #297de8
+      );
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .open-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .learning-panel {
+      display: none;
+      margin-top: 20px;
+      padding: 25px;
+      border: 1px solid rgba(255, 209, 92, 0.45);
+      border-radius: 18px;
+      background: rgba(5, 24, 52, 0.95);
+    }
+
+    .learning-panel.active {
+      display: block;
+    }
+
+    .learning-panel h2 {
+      text-align: center;
+      color: #ffd15c;
+      margin-bottom: 18px;
+    }
+
+    .learning-sentence {
+      direction: rtl;
+      text-align: center;
+      font-family:
+        "Traditional Arabic",
+        "Noto Naskh Arabic",
+        serif;
+
+      font-size: 38px;
+      color: white;
+      line-height: 1.8;
+    }
+
+    .panel-note {
+      text-align: center;
+      color: #d9e7f6;
+      margin-top: 12px;
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .component-card {
+      padding: 24px;
+      border: 1px solid rgba(56, 214, 255, 0.35);
+      border-radius: 18px;
+      background: rgba(5, 24, 52, 0.88);
+    }
+
+    .component-card h2 {
+      margin-bottom: 12px;
+      color: #38d6ff;
+    }
+
+    .component-card p {
+      color: #d9e7f6;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .component-button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      background: linear-gradient(
+        90deg,
+        #16b9e3,
+        #297de8
+      );
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .component-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .badge-section {
+      margin-top: 30px;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid rgba(255, 209, 92, 0.45);
+      border-radius: 20px;
+      background: rgba(5, 24, 52, 0.9);
+    }
+
+    .badge-icon {
+      font-size: 70px;
+      opacity: 0.45;
+      filter: grayscale(1);
+    }
+
+    .badge-section h2 {
+      margin: 12px 0 8px;
+      color: #ffd15c;
+    }
+
+    .badge-section p {
+      color: #d9e7f6;
+    }
+
+    @media (max-width: 900px) {
+      .mission-flow {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .textbook-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .textbook-card img {
+        height: auto;
+      }
+
+      .component-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .back-button,
+      .agent-card {
+        text-align: center;
+      }
+
+      .mission-flow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+/* ===== ARBLOXIA HQ v5.1 ===== */
+.hq-screen{position:fixed;inset:0;z-index:99999;overflow:auto;background:radial-gradient(circle at 50% 15%,#174c82 0,#071a36 42%,#020713 100%);padding:28px 18px;color:#fff}
+.hq-screen[hidden]{display:none!important}
+.hq-shell{width:min(1180px,96%);margin:auto;border:1px solid rgba(255,209,92,.55);border-radius:28px;background:rgba(4,20,45,.94);box-shadow:0 25px 80px rgba(0,0,0,.5);overflow:hidden}
+.hq-hero{display:grid;grid-template-columns:220px 1fr 280px;gap:24px;align-items:center;padding:30px;background:linear-gradient(135deg,rgba(17,63,112,.94),rgba(4,20,45,.96));border-bottom:1px solid rgba(56,214,255,.3)}
+.hq-channel-logo{width:190px;max-height:190px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(255,196,34,.35))}
+.hq-welcome{text-align:center}.hq-welcome .arabic{font-family:"Traditional Arabic","Noto Naskh Arabic",serif;font-size:clamp(42px,6vw,72px);line-height:1;color:#ffd15c}.hq-welcome h1{font-size:clamp(28px,4vw,48px);margin:8px 0;color:#fff}.hq-welcome h1 span{color:#ffd15c}.hq-welcome p{color:#d9e7f6;line-height:1.6}
+.hq-owner{border:1px solid rgba(255,209,92,.6);border-radius:18px;padding:18px;background:rgba(3,17,39,.78);text-align:center}.hq-owner small{display:block;color:#ffd15c;letter-spacing:2px;font-weight:800;margin-bottom:10px}.hq-owner strong{display:block;font-size:22px}.hq-owner span{display:block;color:#b9d2ea;margin-top:5px}
+.hq-body{padding:28px}.hq-intro{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.hq-message,.hq-progress{border:1px solid rgba(56,214,255,.38);border-radius:20px;padding:24px;background:rgba(6,30,61,.82)}.hq-message h2{color:#ffd15c;margin-bottom:12px}.hq-message p{line-height:1.7;color:#e3eef8}.aria-home-card{margin-top:18px;padding:16px 18px;border:1px solid rgba(83,232,160,.55);border-radius:16px;background:linear-gradient(135deg,rgba(5,38,67,.9),rgba(4,22,42,.95));display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}.aria-home-icon{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#25c7eb,#44e18a);font-size:28px;box-shadow:0 0 22px rgba(50,214,202,.25)}.aria-home-copy strong{display:block;color:#53e8a0;letter-spacing:.08em;font-size:.82rem;margin-bottom:5px}.aria-home-copy p{margin:0;line-height:1.55;color:#eef8ff}.aria-home-copy .aria-name{color:#ffd15c;font-weight:900}.aria-home-audio{border:1px solid #53e8a0;background:rgba(13,107,89,.78);color:#fff;border-radius:12px;padding:11px 14px;font-weight:900;cursor:pointer;white-space:nowrap}.aria-home-audio:hover{filter:brightness(1.08)}@media(max-width:650px){.aria-home-card{grid-template-columns:auto 1fr}.aria-home-audio{grid-column:1/-1;width:100%}}.hq-progress-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.hq-stat{padding:16px;border-radius:14px;background:rgba(2,15,34,.65);text-align:center}.hq-stat b{display:block;color:#ffd15c;font-size:24px;margin-top:6px}
+.hq-worlds{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:22px}.hq-world{min-height:210px;padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(16,62,111,.95),rgba(4,20,45,.98));text-align:center;display:flex;flex-direction:column;justify-content:space-between}.hq-world.active{border-color:#4be38f;box-shadow:0 0 26px rgba(75,227,143,.22)}.hq-world.locked{opacity:.62}.hq-world h3{color:#ffd15c;margin:8px 0}.hq-world .world-ar{font-family:"Traditional Arabic","Noto Naskh Arabic",serif;font-size:31px;direction:rtl}.hq-world .world-status{font-size:13px;color:#bcd3e8}.hq-start{display:block;width:min(460px,100%);margin:26px auto 4px;padding:16px 24px;border:0;border-radius:14px;background:linear-gradient(90deg,#16b9e3,#2d86ec);color:#fff;font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 14px 35px rgba(22,185,227,.25)}.hq-start:hover{transform:translateY(-2px)}
+.hq-footer{text-align:center;padding:18px;color:#9db7d0;border-top:1px solid rgba(56,214,255,.2)}.owner-brand-strip{margin:18px 0 0;padding:14px;border:1px solid rgba(255,209,92,.4);border-radius:16px;display:flex;gap:14px;align-items:center;justify-content:center;background:rgba(5,24,52,.75)}.owner-brand-strip img{width:56px;height:56px;object-fit:contain}.owner-brand-strip strong{color:#ffd15c}
+@media(max-width:900px){.hq-hero{grid-template-columns:1fr;text-align:center}.hq-channel-logo{margin:auto}.hq-owner{max-width:420px;margin:auto;width:100%}.hq-intro{grid-template-columns:1fr}.hq-worlds{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.hq-screen{padding:8px}.hq-shell{width:100%;border-radius:18px}.hq-hero,.hq-body{padding:18px}.hq-worlds{grid-template-columns:1fr}.hq-progress-grid{grid-template-columns:1fr 1fr}.hq-channel-logo{width:130px}}
+
+
+.award-navigation-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px}
+
+.hq-agent-session{max-width:760px;margin:22px auto 12px;display:flex;gap:14px;align-items:center;justify-content:space-between;padding:14px 16px;border:1px solid rgba(57,229,140,.55);border-radius:16px;background:rgba(3,24,44,.72)}
+.hq-agent-session>div{display:flex;flex-direction:column;text-align:left;gap:3px}.hq-agent-session span{font-size:.76rem;letter-spacing:.12em;color:#53e8a0;font-weight:900}.hq-agent-session strong{font-size:1.05rem;color:#fff}.hq-new-agent{border:1px solid #53e8a0;background:linear-gradient(90deg,#0d6b59,#16966f);color:#fff;border-radius:12px;padding:12px 16px;font-weight:900;cursor:pointer}.hq-new-agent:hover{filter:brightness(1.08)}
+@media(max-width:680px){.hq-agent-session{flex-direction:column;align-items:stretch}.hq-agent-session>div{text-align:center}.hq-new-agent{width:100%}}
+.award-navigation-actions .return-home-button{border:1px solid #39e58c;background:linear-gradient(90deg,#0d6b59,#16966f);color:#fff;border-radius:14px;padding:14px 20px;font-weight:900;cursor:pointer}
+@media(max-width:600px){.award-navigation-actions{flex-direction:column}.award-navigation-actions button{width:100%}}
+</style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HQ UTAMA ARBLOXIA -->
+  <section id="arbloxiaHQ" class="hq-screen" aria-labelledby="hqTitle">
+    <div class="hq-shell">
+      <div class="hq-hero">
+        <img src="IMAGES/logo-ummu-sofiy-channel.png" alt="Logo Muallimah Ummu Sofiy Channel" class="hq-channel-logo">
+        <div class="hq-welcome">
+          <div class="arabic" lang="ar" dir="rtl">أَهْلًا وَسَهْلًا</div>
+          <h1 id="hqTitle">Ahlan Wasahlan ke <span>EDUHUB Ummu Sofiy Channel</span></h1>
+          <p>Selamat datang ke Akademi Ejen ARBLOXIA — platform pembelajaran Bahasa Arab berasaskan misi.</p>
+        </div>
+        <div class="hq-owner">
+          <small>CETUSAN IDEA & INOVASI</small>
+          <strong>Muallimah Ummu Sofiy</strong>
+          <span>SK Sultan Sulaiman 1</span>
+          <span>#SimpleTapiSampai</span>
+        </div>
+      </div>
+      <div class="hq-body">
+        <div class="hq-intro">
+          <div class="hq-message">
+            <h2>Assalamualaikum, Ejen!</h2>
+            <p>Anda telah dipilih untuk menyertai Akademi Ejen ARBLOXIA. Kuasai kalimah, bina ayat dan lengkapkan setiap misi untuk memperoleh passport, lencana dan sijil digital.</p>
+            <div class="aria-home-card" aria-label="Pengenalan ARIA">
+              <div class="aria-home-icon" aria-hidden="true">🤖</div>
+              <div class="aria-home-copy">
+                <strong>ARIA · SYSTEM ONLINE</strong>
+                <p><b>“Selamat datang, Ejen ARBLOXIA.”</b><br><span class="aria-name">“Saya ARIA. Artificial Robotic Interactive Assistant.”</span></p>
+              </div>
+              <button type="button" id="playAriaIntro" class="aria-home-audio">🔊 DENGAR ARIA</button>
+              <audio id="ariaIntroAudio" preload="auto" src="AUDIO/ARIA/aria_online.mp3"></audio>
+            </div>
+          </div>
+          <div class="hq-progress">
+            <div class="hq-progress-grid">
+              <div class="hq-stat">World aktif<b>2</b></div>
+              <div class="hq-stat">Ganjaran utama<b>2</b></div>
+              <div class="hq-stat">World 1<b>Travel Master</b></div>
+              <div class="hq-stat">World 2<b>Sentence Architect</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="hq-worlds">
+          <article class="hq-world active"><div><div>🌍 WORLD 1</div><h3 class="world-ar">الجُمْلَةُ الْبَسِيطَةُ</h3><p>Jumlah Basitoh</p></div><div class="world-status">🏅 Travel Master</div></article>
+          <article class="hq-world active"><div><div>🌍 WORLD 2</div><h3 class="world-ar">الجُمْلَةُ الْمُتَنَاسِقَةُ</h3><p>Jumlah Mutanasiqah</p></div><div class="world-status">🧠 Sentence Architect</div></article>
+          <article class="hq-world locked"><div><div>🌍 WORLD 3</div><h3 class="world-ar">الحِوَارُ</h3><p>Hiwar</p></div><div class="world-status">🔒 Akan datang</div></article>
+          <article class="hq-world locked"><div><div>🌍 WORLD 4</div><h3 class="world-ar">القِرَاءَةُ</h3><p>Qiraah</p></div><div class="world-status">🔒 Akan datang</div></article>
+          <article class="hq-world locked"><div><div>🌍 WORLD 5</div><h3 class="world-ar">الكِتَابَةُ</h3><p>Kitabah</p></div><div class="world-status">🔒 Akan datang</div></article>
+        </div>
+        <div class="hq-agent-session" aria-live="polite">
+          <div><span>👤 EJEN SEMASA</span><strong id="hqAgentName">Belum ditetapkan</strong></div>
+          <button type="button" id="newAgentButton" class="hq-new-agent">🔄 TUKAR EJEN / PESERTA BAHARU</button>
+        </div>
+        <button type="button" id="enterArbloxiaButton" class="hq-start">🚀 MULAKAN PENGEMBARAAN</button>
+      </div>
+      <div class="hq-footer">© 2026 ARBLOXIA · Dibangunkan oleh Muallimah Ummu Sofiy Channel</div>
+    </div>
+  </section>
+
+
+  <!-- STAGE 0: PENGENALAN KALIMAH -->
+  <section id="kalimahIntro" class="kalimah-intro" aria-labelledby="kalimahIntroTitle">
+    <div class="kalimah-intro-card">
+      <img src="IMAGES/logo-arbloxia.png" alt="Logo ARBLOXIA – Simple Tapi Sampai" class="kalimah-logo">
+
+      <p class="kalimah-stage-label">🌱 PERINGKAT 0 · PENGENALAN KALIMAH</p>
+      <h1 id="kalimahIntroTitle">Bersedia Sebelum Memulakan Misi</h1>
+      <p class="kalimah-intro-text">
+        Tonton video pembelajaran kalimah terlebih dahulu. Bahagian ini ialah ulang kaji ringkas sebelum memasuki Level 1: Jumlah Basitoh.
+      </p>
+
+      <div class="kalimah-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/5gpy6MTlbm0?rel=0"
+          title="Video pembelajaran Kalimah ARBLOXIA"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <button type="button" id="kalimahReadyButton" class="kalimah-ready-button">
+        🚀 SAYA SUDAH BERSEDIA
+      </button>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <div class="top-bar">
+      <a href="mission-map.html" class="back-button">
+        ← Kembali ke Peta Misi
+      </a>
+
+      <div class="top-actions">
+        <button type="button" id="reopenKalimahButton" class="intro-replay-button">
+          🌱 Ulang Video Kalimah
+        </button>
+        <div class="agent-card">
+          🎴 Kad Ejen ARBLOXIA
+        </div>
+      </div>
+    </div>
+
+    <section class="mission-header">
+
+      <p class="mission-code">
+        MISI UTAMA ARBLOXIA
+      </p>
+
+      <h1>MISSION DOSSIER</h1>
+
+      <div class="arabic-title">
+        رِحْلَةً سَعِيدَةً
+      </div>
+
+      <div class="topic-label">
+        JUMLAH BASITOH
+      </div>
+
+      <p class="mission-description">
+        Murid akan menguasai ayat mudah berkaitan perjalanan
+        melalui Kad Ejen ARBLOXIA, audio sebutan,
+        Video AI Pembelajaran dan Cabaran Misi.
+      </p>
+
+    </section>
+
+    <section class="arbloxia-analytics" aria-label="Statistik ARBLOXIA">
+      <div class="analytics-item">
+        <span class="analytics-icon">👥</span>
+        <div>
+          <small>Pengunjung direkodkan</small>
+          <strong id="visitorCount">Memuatkan…</strong>
+        </div>
+      </div>
+      <div class="analytics-item">
+        <span class="analytics-icon">🎮</span>
+        <div>
+          <small>Level semasa</small>
+          <strong>Level 1 · Jumlah Basitoh</strong>
+        </div>
+      </div>
+      <div class="analytics-item">
+        <span class="analytics-icon">🏅</span>
+        <div>
+          <small>Ganjaran kemuncak</small>
+          <strong>Travel Master</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission-flow">
+
+      <div class="flow-item">
+        <span class="flow-icon">📡</span>
+        Aktifkan Dossier
+      </div>
+
+      <div class="flow-item">
+        <span class="flow-icon">🔊</span>
+        Audio Sebutan
+      </div>
+
+      <div class="flow-item">
+        <span class="flow-icon">🎬</span>
+        Video AI Pembelajaran
+      </div>
+
+      <div class="flow-item">
+        <span class="flow-icon">🎮</span>
+        Cabaran Misi
+      </div>
+
+      <div class="flow-item">
+        <span class="flow-icon">🏅</span>
+        Badge Ejen
+      </div>
+
+    </section>
+
+    <h2 class="section-title">
+      📖 Kandungan Jumlah Basitoh
+    </h2>
+
+    <section class="mission-grid">
+
+  <!-- MISSION 01 -->
+   <div class="mission-progress">
+
+    <div class="progress-title">
+
+        <span>🚀 Kemajuan Misi</span>
+
+        <span id="progressPercent">
+            0%
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div
+            id="progressFill"
+            class="progress-fill">
+        </div>
+
+    </div>
+
+    <div class="xp-box">
+        ⭐ XP : <span id="xpValue">0</span>
+    </div>
+
+    <p id="progressStatus" class="progress-status">
+      Mulakan Mission 01 untuk mengumpul XP.
+    </p>
+
+    <button type="button" id="resetProgressButton" class="reset-progress-button">
+      ↻ Reset Kemajuan
+    </button>
+
+</div>
+  <article class="mission-card" data-mission-card="mission01">
+
+    <div class="mission-number">MISSION 01 · PENGANGKUTAN</div>
+
+    <img
+      src="IMAGES/halaman12.png"
+      alt="Misi ماذا تركب"
+      class="mission-image"
+    >
+
+    <div class="mission-content">
+
+      <h3 class="mission-arabic">
+        مَاذَا تَرْكَبُ؟
+      </h3>
+
+      <p class="mission-objective">
+        🎯 Murid dapat menyebut dan menjawab soalan berkaitan
+        kenderaan yang dinaiki.
+      </p>
+
+      <button
+        type="button"
+        class="start-mission-button"
+        data-mission="mission01"
+      >
+        ▶ MULAKAN MISI
+      </button>
+
+    </div>
+  </article>
+
+
+  <!-- MISSION 02 -->
+  <article class="mission-card locked" data-mission-card="mission02">
+
+    <div class="mission-number">MISSION 02 · DESTINASI & MASA</div>
+
+    <img
+      src="IMAGES/halaman13.png"
+      alt="Misi إلى أين تسافر"
+      class="mission-image"
+    >
+
+    <div class="mission-content">
+
+      <h3 class="mission-arabic">
+        إِلَى أَيْنَ تُسَافِرُ؟
+      </h3>
+
+      <p class="mission-objective">
+        🎯 Murid dapat bertanya dan menyatakan destinasi perjalanan.
+      </p>
+
+      <button
+        type="button"
+        class="start-mission-button"
+        data-mission="mission02"
+        disabled
+        aria-disabled="true"
+      >
+        ▶ MULAKAN MISI
+      </button>
+
+    </div>
+  </article>
+
+
+  <!-- MISSION 03 -->
+  <article class="mission-card locked" data-mission-card="mission03">
+
+    <div class="mission-number">MISSION 03 · CARA & PENGALAMAN</div>
+
+    <img
+      src="IMAGES/halaman14.png"
+      alt="Misi بماذا تسافر"
+      class="mission-image"
+    >
+
+    <div class="mission-content">
+
+      <h3 class="mission-arabic">
+        بِمَاذَا تُسَافِرُ؟
+      </h3>
+
+      <p class="mission-objective">
+        🎯 Murid dapat menyatakan jenis pengangkutan yang digunakan.
+      </p>
+
+      <button
+        type="button"
+        class="start-mission-button"
+        data-mission="mission03"
+        disabled
+        aria-disabled="true"
+      >
+        🔒 SELESAIKAN MISSION 02
+      </button>
+
+    </div>
+  </article>
+
+  <!-- MISI KEMUNCAK -->
+  <article class="mission-card summit-card locked" data-mission-card="summit">
+    <div class="mission-number">👑 MISI KEMUNCAK</div>
+    <div class="summit-visual" aria-hidden="true">
+      <span class="summit-medal">🏅</span>
+      <strong>TRAVEL MASTER</strong>
+      <small>Gabungkan semua kemahiran Level 1</small>
+    </div>
+    <div class="mission-content">
+      <h3 class="mission-arabic">الجُمْلَةُ الْبَسِيطَةُ</h3>
+      <p class="mission-objective">
+        🎯 Selesaikan lima cabaran perjalanan untuk membuka Lencana Travel Master.
+      </p>
+      <button
+        type="button"
+        class="start-mission-button summit-start-button"
+        data-mission="summitMission"
+        disabled
+        aria-disabled="true"
+      >
+        🔒 SELESAIKAN TIGA MISI DAHULU
+      </button>
+    </div>
+  </article>
+
+</section>
+
+
+<!-- PANEL MISSION 01 -->
+<section class="mission-panel" id="mission01">
+
+  <button
+    type="button"
+    class="close-panel-button"
+  >
+    ✕ Tutup
+  </button>
+
+  <div class="mission-heading">
+    <span>MISSION 01</span>
+    <h2 lang="ar" dir="rtl">
+      مَاذَا تَرْكَبُ؟
+    </h2>
+  </div>
+
+
+  <div class="learning-flow">
+
+    <!-- AKTIFKAN DOSSIER -->
+    <div data-checkpoint="scan" class="learning-step">
+
+      <span class="step-number">1</span>
+
+      <h3>📡 Aktifkan Dossier</h3>
+
+      <p>Imbas Kad Ejen ARBLOXIA.</p>
+
+      <button
+        type="button"
+        class="action-button scan-agent-button"
+      >
+        Imbas Kad Ejen
+      </button>
+
+    </div>
+
+
+    <!-- AUDIO SEBUTAN -->
+    <div data-checkpoint="audio" class="learning-step audio-learning-step">
+
+      <span class="step-number">2</span>
+
+      <h3>🔊 Audio Sebutan</h3>
+
+      <div
+        class="arabic-dialogue"
+        lang="ar"
+        dir="rtl"
+      >
+        مَاذَا تَرْكَبُ؟
+        <br>
+        أَنَا أَرْكَبُ السَّفِينَةَ.
+      </div>
+
+      <button
+        type="button"
+        class="action-button play-audio"
+        data-audio="AUDIO/GURU/mission01_sentence.m4a"
+      >
+        🔊 Dengar Sebutan
+      </button>
+
+      <p
+        class="audio-status"
+        aria-live="polite"
+      >
+        Tekan butang untuk mendengar sebutan.
+      </p>
+
+    </div>
+
+
+    <!-- VIDEO AI -->
+    <div data-checkpoint="video" class="learning-step video-learning-step">
+
+      <span class="step-number">3</span>
+
+      <h3>🎬 Video AI Pembelajaran</h3>
+
+      <p>
+        Tonton video AI yang mengandungi lagu pembelajaran
+        Jumlah Basitoh.
+      </p>
+
+      <div class="video-container video-always-visible">
+
+        <iframe
+          class="learning-video"
+          src="https://www.youtube.com/embed/NGZY3QvdGJs?rel=0"
+          title="Video AI Pembelajaran Mission 01"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+      <a
+        href="https://youtu.be/NGZY3QvdGJs"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-button video-link-button"
+      >
+        ▶ Buka Video di YouTube
+      </a>
+
+    </div>
+
+<!-- MAHARAH QIRAAH -->
+<div data-checkpoint="qiraah" class="learning-step qiraah-step">
+
+  <span class="step-number">4</span>
+
+  <h3>📖 Maharah Qiraah</h3>
+
+  <p>
+    Susun perkataan supaya menjadi ayat yang betul.
+  </p>
+
+  <div class="word-bank" dir="rtl">
+
+    <button
+      type="button"
+      class="word-card"
+      data-word="السَّفِينَةَ"
+    >
+      السَّفِينَةَ
+    </button>
+
+    <button
+      type="button"
+      class="word-card"
+      data-word="أَرْكَبُ"
+    >
+      أَرْكَبُ
+    </button>
+
+    <button
+      type="button"
+      class="word-card"
+      data-word="أَنَا"
+    >
+      أَنَا
+    </button>
+
+  </div>
+
+  <div class="qiraah-answer" dir="rtl">
+    <span class="answer-placeholder">
+      Klik perkataan mengikut susunan yang betul.
+    </span>
+  </div>
+
+  <div class="qiraah-actions">
+
+    <button
+      type="button"
+      class="action-button check-qiraah-button"
+    >
+      ✅ Semak Jawapan
+    </button>
+
+    <button
+      type="button"
+      class="action-button reset-qiraah-button"
+    >
+      🔄 Cuba Semula
+    </button>
+
+  </div>
+
+  <p class="qiraah-feedback" aria-live="polite"></p>
+
+</div>
+<!-- MAHARAH KITABAH -->
+<div data-checkpoint="kitabah" class="learning-step kitabah-step">
+
+  <span class="step-number">5</span>
+
+  <h3>✍️ Maharah Kitabah</h3>
+
+  <p>
+    Pilih perkataan yang betul untuk melengkapkan ayat.
+  </p>
+
+  <div
+    class="kitabah-question"
+    lang="ar"
+    dir="rtl"
+  >
+    أَنَا
+    <span class="kitabah-blank">______</span>
+    السَّفِينَةَ.
+  </div>
+
+  <div class="kitabah-options" dir="rtl">
+
+    <button
+      type="button"
+      class="kitabah-option"
+      data-answer="correct"
+      data-word="أَرْكَبُ"
+    >
+      أَرْكَبُ
+    </button>
+
+    <button
+      type="button"
+      class="kitabah-option"
+      data-answer="wrong"
+      data-word="أُسَافِرُ"
+    >
+      أُسَافِرُ
+    </button>
+
+    <button
+      type="button"
+      class="kitabah-option"
+      data-answer="wrong"
+      data-word="أَقْرَأُ"
+    >
+      أَقْرَأُ
+    </button>
+
+  </div>
+
+  <p
+    class="kitabah-feedback"
+    aria-live="polite"
+  ></p>
+
+</div>
+
+    <!-- CABARAN MISI -->
+    <div data-checkpoint="challenge" class="learning-step">
+
+      <span class="step-number">6</span>
+
+      <h3>🎮 Cabaran Misi</h3>
+
+      <p>Pilih jawapan yang betul:</p>
+
+      <div
+        class="arabic-question"
+        lang="ar"
+        dir="rtl"
+      >
+        مَاذَا تَرْكَبِينَ؟
+      </div>
+
+      <button
+        type="button"
+        class="answer-button"
+        data-answer="wrong"
+        lang="ar"
+        dir="rtl"
+      >
+        أَنَا أَرْكَبُ الْحَافِلَةَ.
+      </button>
+
+      <button
+        type="button"
+        class="answer-button"
+        data-answer="correct"
+        lang="ar"
+        dir="rtl"
+      >
+        أَنَا أَرْكَبُ الطَّائِرَةَ.
+      </button>
+
+      <button
+        type="button"
+        class="answer-button"
+        data-answer="wrong"
+        lang="ar"
+        dir="rtl"
+      >
+        أَنَا أَرْكَبُ الدَّرَّاجَةَ.
+      </button>
+
+      <div
+        class="mission-feedback"
+        aria-live="polite"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- BADGE -->
+  <div class="mission-badge locked" data-mission-badge="mission01">
+
+    <div class="badge-symbol">🏅</div>
+
+    <h3>Badge Ejen Pengangkutan</h3>
+
+    <p>
+      Jawab Cabaran Misi dengan betul untuk membuka badge.
+    </p>
+
+  </div>
+
+</section>
+<!-- PANEL MISSION 02 -->
+<section class="mission-panel" id="mission02">
+
+  <button type="button" class="close-panel-button">
+    ✕ Tutup
+  </button>
+
+  <div class="panel-heading">
+    <span>MISSION 02</span>
+    <h2>إِلَى أَيْنَ تُسَافِرُ؟</h2>
+  </div>
+
+  <div class="learning-flow">
+
+    <div class="learning-step">
+      <span class="step-number">1</span>
+      <h3>📡 Aktifkan Dossier</h3>
+      <p>Imbas Kad Ejen ARBLOXIA.</p>
+
+      <button type="button" class="action-button scan-button">
+        Imbas Kad Ejen
+      </button>
+
+      <div class="scan-result">
+        ✅ Dossier berjaya diaktifkan!
+      </div>
+    </div>
+
+
+    <!-- AUDIO SEBUTAN MISSION 02 -->
+    <div class="learning-step mission02-audio-section">
+
+      <span class="step-number">2</span>
+      <h3>🔊 Audio Sebutan — Dialog Perjalanan</h3>
+      <p>Dengar dan ulang empat dialog yang berlainan.</p>
+
+    <div class="mission02-audio-grid">
+
+  <!-- DIALOG 1 -->
+  <div class="audio-dialogue-card audio-learning-step">
+
+    <h4>Dialog 1 — Destinasi Ali</h4>
+
+    <div class="arabic-dialogue" lang="ar" dir="rtl">
+      <p>إِلَى أَيْنَ تُسَافِرُ يَا عَلِي؟</p>
+      <p>أَنَا أُسَافِرُ إِلَى كلنتن.</p>
+    </div>
+
+    <button
+      type="button"
+      class="action-button dialog-audio-button mission02-dialog-audio"
+      data-dialog="1"
+      data-audio="AUDIO/GURU/mission02_dialog01.m4a"
+    >
+      <span class="dialog-speaker">🔊</span>
+      <span class="dialog-button-text">Mainkan Dialog 1</span>
+    </button>
+
+    <p class="dialog-status" data-dialog-status="1">
+      Tekan butang untuk mendengar dialog.
+    </p>
+
+  </div>
+
+
+  <!-- DIALOG 2 -->
+  <div class="audio-dialogue-card audio-learning-step">
+
+    <h4>Dialog 2 — Destinasi Lina</h4>
+
+    <div class="arabic-dialogue" lang="ar" dir="rtl">
+      <p>إِلَى أَيْنَ تُسَافِرِينَ يَا لِينَا؟</p>
+      <p>أَنَا أُسَافِرُ إِلَى قدح.</p>
+    </div>
+
+    <button
+      type="button"
+      class="action-button dialog-audio-button mission02-dialog-audio"
+      data-dialog="2"
+      data-audio="AUDIO/GURU/mission02_dialog02.m4a"
+    >
+      <span class="dialog-speaker">🔊</span>
+      <span class="dialog-button-text">Mainkan Dialog 2</span>
+    </button>
+
+    <p class="dialog-status" data-dialog-status="2">
+      Tekan butang untuk mendengar dialog.
+    </p>
+
+  </div>
+
+
+  <!-- DIALOG 3 -->
+  <div class="audio-dialogue-card audio-learning-step">
+
+    <h4>Dialog 3 — Masa Kumar</h4>
+
+    <div class="arabic-dialogue" lang="ar" dir="rtl">
+      <p>مَتَى تُسَافِرُ يَا كُومَر؟</p>
+      <p>أُسَافِرُ فِي الْمَسَاءِ.</p>
+    </div>
+
+    <button
+      type="button"
+      class="action-button dialog-audio-button mission02-dialog-audio"
+      data-dialog="3"
+      data-audio="AUDIO/GURU/mission02_dialog03.m4a"
+    >
+      <span class="dialog-speaker">🔊</span>
+      <span class="dialog-button-text">Mainkan Dialog 3</span>
+    </button>
+
+    <p class="dialog-status" data-dialog-status="3">
+      Tekan butang untuk mendengar dialog.
+    </p>
+
+  </div>
+
+
+  <!-- DIALOG 4 -->
+  <div class="audio-dialogue-card audio-learning-step">
+
+    <h4>Dialog 4 — Masa Fatimah</h4>
+
+    <div class="arabic-dialogue" lang="ar" dir="rtl">
+      <p>مَتَى تُسَافِرِينَ يَا فَاطِمَةُ؟</p>
+      <p>أُسَافِرُ فِي الصَّبَاحِ.</p>
+    </div>
+
+    <button
+      type="button"
+      class="action-button dialog-audio-button mission02-dialog-audio"
+      data-dialog="4"
+      data-audio="AUDIO/GURU/mission02_dialog04.m4a"
+    >
+      <span class="dialog-speaker">🔊</span>
+      <span class="dialog-button-text">Mainkan Dialog 4</span>
+    </button>
+
+    <p class="dialog-status" data-dialog-status="4">
+      Tekan butang untuk mendengar dialog.
+    </p>
+
+  </div>
+
+</div>
+<!-- TAMAT mission02-audio-grid -->
+ <div
+  id="mission02AudioComplete"
+  class="mission02-audio-complete"
+  hidden
+>
+  <div class="audio-complete-icon">🎉</div>
+
+  <h3>Checkpoint Audio Selesai!</h3>
+
+  <p>
+    Tahniah! Anda telah mendengar kesemua empat dialog perjalanan.
+  </p>
+
+  <strong>⭐ +20 XP</strong>
+</div>
+<div class="learning-step video-learning-step">
+
+  <span class="step-number">3</span>
+
+  <h3>🎬 Video AI Pembelajaran</h3>
+
+  <p>
+    Tonton video AI yang mengandungi lagu pembelajaran
+    Jumlah Basitoh.
+  </p>
+
+  <div class="video-container video-always-visible">
+
+    <iframe
+      class="learning-video"
+      src="https://www.youtube.com/embed/dKrpFJVtHkk?rel=0"
+      title="Video AI Pembelajaran ARBLOXIA"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+
+  </div>
+
+  <a
+    href="https://youtu.be/dKrpFJVtHkk"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="action-button video-link-button"
+  >
+    ▶ Buka Video di YouTube
+  </a>
+
+</div>
+    <div class="learning-step">
+      <span class="step-number">6</span>
+      <h3>🎮 Cabaran Misi</h3>
+
+      <div class="arabic-question">
+        بِمَاذَا تُسَافِرُ؟
+      </div>
+
+      <button
+        type="button"
+        class="answer-button"
+        data-answer="wrong"
+      >
+        .أُسَافِرُ إِلَى كلنتن
+      </button>
+
+      <button
+        type="button"
+        class="answer-button"
+        data-answer="correct"
+      >
+        .أُسَافِرُ بِالطَّائِرَةِ
+      </button>
+
+      <div class="mission-feedback"></div>
+    </div>
+
+  </div>
+
+  <div class="mission-badge">
+    <div class="badge-symbol">🏅</div>
+    <h3>Badge Ejen Perjalanan</h3>
+    <p>Selesaikan Cabaran Misi untuk membuka badge.</p>
+  </div>
+
+</section>
+
+<!-- PANEL MISSION 03 -->
+<section class="mission-panel mission03-panel" id="mission03">
+
+  <button type="button" class="close-panel-button">✕ Tutup</button>
+
+  <div class="mission03-hero">
+    <span class="mission03-kicker">MISSION 03</span>
+    <div class="mission03-terminal-icon" aria-hidden="true">🚉</div>
+    <h2>Terminal Perjalanan</h2>
+    <p class="mission03-arabic-title" lang="ar" dir="rtl">بِمَاذَا تُسَافِرُ؟</p>
+    <p>Semua tiket perjalanan telah bercampur. Sahkan empat checkpoint untuk mendapatkan Travel Passport.</p>
+    <button type="button" id="mission03Start" class="mission03-primary-button">🎫 AMBIL TIKET</button>
+  </div>
+
+  <div id="mission03Game" class="mission03-game" hidden>
+    <div class="mission03-route" aria-label="Kemajuan Mission 03">
+      <span class="route-stop active" data-route-stop="1">🚆</span>
+      <span class="route-line"></span>
+      <span class="route-stop" data-route-stop="2">✈️</span>
+      <span class="route-line"></span>
+      <span class="route-stop" data-route-stop="3">😊</span>
+      <span class="route-line"></span>
+      <span class="route-stop" data-route-stop="4">😌</span>
+      <span class="route-line"></span>
+      <span class="route-stop" data-route-stop="5">🛂</span>
+    </div>
+
+    <div class="mission03-statusbar">
+      <span>🎟️ Tiket disahkan: <strong id="mission03Count">0/4</strong></span>
+      <span>⭐ XP Misi: <strong id="mission03Xp">0</strong></span>
+    </div>
+
+    <article class="mission03-checkpoint active" data-checkpoint="1">
+      <div class="ticket-label">TIKET 01 · KERETA API</div>
+      <h3 lang="ar" dir="rtl">بِمَاذَا تُسَافِرُ؟</h3>
+      <p>Pilih pengangkutan yang sepadan dengan jawapan.</p>
+      <div class="mission03-options">
+        <button type="button" class="mission03-option" data-correct="true" data-icon="🚆"><span>🚆</span><small>Kereta api</small></button>
+        <button type="button" class="mission03-option" data-correct="false" data-icon="✈️"><span>✈️</span><small>Kapal terbang</small></button>
+        <button type="button" class="mission03-option" data-correct="false" data-icon="🚌"><span>🚌</span><small>Bas</small></button>
+        <button type="button" class="mission03-option" data-correct="false" data-icon="🚲"><span>🚲</span><small>Basikal</small></button>
+      </div>
+      <div class="mission03-feedback" aria-live="polite"></div>
+      <div class="mission03-reward" hidden>
+        <p class="reward-stamp">✅ TIKET DISAHKAN</p>
+        <p class="reward-arabic" lang="ar" dir="rtl">أُسَافِرُ بِالقِطَارِ.</p>
+        <button type="button" class="mission03-audio-button" data-audio="AUDIO/GURU/mission03_dialog01.m4a">🔊 Dengar Jawapan Guru</button>
+        <button type="button" class="mission03-next-button">Checkpoint Seterusnya →</button>
+      </div>
+    </article>
+
+    <article class="mission03-checkpoint" data-checkpoint="2" hidden>
+      <div class="ticket-label">TIKET 02 · KAPAL TERBANG</div>
+      <h3 lang="ar" dir="rtl">بِمَاذَا تُسَافِرِينَ؟</h3>
+      <p>Pilih pengangkutan yang sepadan dengan jawapan.</p>
+      <div class="mission03-options">
+        <button type="button" class="mission03-option" data-correct="false"><span>🚆</span><small>Kereta api</small></button>
+        <button type="button" class="mission03-option" data-correct="true"><span>✈️</span><small>Kapal terbang</small></button>
+        <button type="button" class="mission03-option" data-correct="false"><span>🚢</span><small>Kapal</small></button>
+        <button type="button" class="mission03-option" data-correct="false"><span>🚕</span><small>Teksi</small></button>
+      </div>
+      <div class="mission03-feedback" aria-live="polite"></div>
+      <div class="mission03-reward" hidden>
+        <p class="reward-stamp">✅ TIKET DISAHKAN</p>
+        <p class="reward-arabic" lang="ar" dir="rtl">أُسَافِرُ بِالطَّائِرَةِ.</p>
+        <button type="button" class="mission03-audio-button" data-audio="AUDIO/GURU/mission03_dialog02.m4a">🔊 Dengar Jawapan Guru</button>
+        <button type="button" class="mission03-next-button">Checkpoint Seterusnya →</button>
+      </div>
+    </article>
+
+    <article class="mission03-checkpoint" data-checkpoint="3" hidden>
+      <div class="ticket-label">CHECKPOINT 03 · PENGALAMAN</div>
+      <h3 lang="ar" dir="rtl">كَيْفَ سَفَرُكَ؟</h3>
+      <p>Pilih ekspresi yang menunjukkan perjalanan menyeronokkan.</p>
+      <div class="mission03-options emoji-options">
+        <button type="button" class="mission03-option" data-correct="true"><span>😊</span><small>Menyeronokkan</small></button>
+        <button type="button" class="mission03-option" data-correct="false"><span>😴</span><small>Mengantuk</small></button>
+        <button type="button" class="mission03-option" data-correct="false"><span>😫</span><small>Penat</small></button>
+        <button type="button" class="mission03-option" data-correct="false"><span>🤒</span><small>Tidak sihat</small></button>
+      </div>
+      <div class="mission03-feedback" aria-live="polite"></div>
+      <div class="mission03-reward" hidden>
+        <p class="reward-stamp">✅ COP PENGALAMAN DITERIMA</p>
+        <p class="reward-arabic" lang="ar" dir="rtl">مُمْتِعٌ جِدًّا.</p>
+        <button type="button" class="mission03-audio-button" data-audio="AUDIO/GURU/mission03_dialog03.m4a">🔊 Dengar Jawapan Guru</button>
+        <button type="button" class="mission03-next-button">Checkpoint Seterusnya →</button>
+      </div>
+    </article>
+
+    <article class="mission03-checkpoint" data-checkpoint="4" hidden>
+      <div class="ticket-label">CHECKPOINT 04 · KESELESAAN</div>
+      <h3 lang="ar" dir="rtl">كَيْفَ سَفَرُكِ؟</h3>
+      <p>Pilih ekspresi yang menunjukkan perjalanan selesa.</p>
+      <div class="mission03-options emoji-options">
+        <button type="button" class="mission03-option" data-correct="false"><span>😫</span><small>Penat</small></button>
+        <button type="button" class="mission03-option" data-correct="true"><span>😌</span><small>Selesa</small></button>
+        <button type="button" class="mission03-option" data-correct="false"><span>😠</span><small>Marah</small></button>
+        <button type="button" class="mission03-option" data-correct="false"><span>😨</span><small>Takut</small></button>
+      </div>
+      <div class="mission03-feedback" aria-live="polite"></div>
+      <div class="mission03-reward" hidden>
+        <p class="reward-stamp">✅ COP KESELESAAN DITERIMA</p>
+        <p class="reward-arabic" lang="ar" dir="rtl">مُرِيحٌ جِدًّا.</p>
+        <button type="button" class="mission03-audio-button" data-audio="AUDIO/GURU/mission03_dialog04.m4a">🔊 Dengar Jawapan Guru</button>
+        <button type="button" class="mission03-next-button">Buka Travel Passport →</button>
+      </div>
+    </article>
+
+    <article class="mission03-passport" data-checkpoint="5" hidden>
+      <div class="passport-cover">
+        <span class="passport-emblem">🛂</span>
+        <p>ARBLOXIA</p>
+        <h3>TRAVEL PASSPORT</h3>
+      </div>
+      <div class="passport-details">
+        <p class="passport-status">MISSION 03 · DILULUSKAN</p>
+        <h3>Tahniah, Ejen!</h3>
+        <p>Semua tiket dan pengalaman perjalanan telah disahkan.</p>
+        <div class="passport-stamps">
+          <span>🚆<small>Train</small><b>✓</b></span>
+          <span>✈️<small>Airplane</small><b>✓</b></span>
+          <span>😊<small>Enjoyable</small><b>✓</b></span>
+          <span>😌<small>Comfortable</small><b>✓</b></span>
+        </div>
+        <div class="mission03-complete-banner">🏆 MISSION COMPLETE · +20 XP</div>
+        <button type="button" id="mission03Replay" class="mission03-replay-button">🔄 MAIN SEMULA MISSION 03</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- PANEL MISI KEMUNCAK -->
+<section class="mission-panel summit-panel" id="summitMission">
+  <button type="button" class="close-panel-button">✕ Tutup</button>
+
+  <div class="summit-hero">
+    <span class="summit-kicker">👑 MISI KEMUNCAK · LEVEL 1</span>
+    <div class="summit-crown" aria-hidden="true">🏆</div>
+    <h2>Operasi Perjalanan Gembira</h2>
+    <p class="summit-arabic-title" lang="ar" dir="rtl">رِحْلَةٌ سَعِيدَةٌ</p>
+    <p>Lengkapkan lima cabaran dan buktikan penguasaan Jumlah Basitoh.</p>
+    <button type="button" id="summitBegin" class="summit-primary-button">🚀 MULAKAN MISI KEMUNCAK</button>
+  </div>
+
+  <div id="summitGame" class="summit-game" hidden>
+    <div class="summit-progress-wrap">
+      <div class="summit-progress-meta">
+        <span>Cabaran: <strong id="summitCount">0/5</strong></span>
+        <span>⭐ XP Misi: <strong id="summitXp">0</strong></span>
+      </div>
+      <div class="summit-progress-track"><span id="summitProgressFill"></span></div>
+    </div>
+
+    <article class="summit-challenge active" data-summit-step="1">
+      <span class="summit-step-label">CABARAN 01 · KENDERAAN</span>
+      <h3 lang="ar" dir="rtl">مَاذَا تَرْكَبُ؟</h3>
+      <p>Pilih jawapan yang betul berdasarkan pembelajaran Mission 01.</p>
+      <div class="summit-options">
+        <button type="button" class="summit-option" data-correct="false">.أَنَا أَرْكَبُ الطَّائِرَةَ</button>
+        <button type="button" class="summit-option" data-correct="true">.أَنَا أَرْكَبُ السَّفِينَةَ</button>
+        <button type="button" class="summit-option" data-correct="false">.أَنَا أَرْكَبُ الدَّرَّاجَةَ</button>
+      </div>
+      <p class="summit-feedback" aria-live="polite"></p>
+      <button type="button" class="summit-next-button" hidden>Cabaran Seterusnya →</button>
+    </article>
+
+    <article class="summit-challenge" data-summit-step="2" hidden>
+      <span class="summit-step-label">CABARAN 02 · DESTINASI</span>
+      <h3 lang="ar" dir="rtl">إِلَى أَيْنَ تُسَافِرُ يَا عَلِي؟</h3>
+      <div class="summit-options">
+        <button type="button" class="summit-option" data-correct="true">.أَنَا أُسَافِرُ إِلَى كلنتن</button>
+        <button type="button" class="summit-option" data-correct="false">.أُسَافِرُ فِي الْمَسَاءِ</button>
+        <button type="button" class="summit-option" data-correct="false">.مُمْتِعٌ جِدًّا</button>
+      </div>
+      <p class="summit-feedback" aria-live="polite"></p>
+      <button type="button" class="summit-next-button" hidden>Cabaran Seterusnya →</button>
+    </article>
+
+    <article class="summit-challenge" data-summit-step="3" hidden>
+      <span class="summit-step-label">CABARAN 03 · MASA</span>
+      <h3 lang="ar" dir="rtl">مَتَى تُسَافِرُ يَا كُومَر؟</h3>
+      <div class="summit-options">
+        <button type="button" class="summit-option" data-correct="false">.أَنَا أُسَافِرُ إِلَى قَدَحْ</button>
+        <button type="button" class="summit-option" data-correct="true">.أُسَافِرُ فِي الْمَسَاءِ</button>
+        <button type="button" class="summit-option" data-correct="false">.أُسَافِرُ بِالطَّائِرَةِ</button>
+      </div>
+      <p class="summit-feedback" aria-live="polite"></p>
+      <button type="button" class="summit-next-button" hidden>Cabaran Seterusnya →</button>
+    </article>
+
+    <article class="summit-challenge" data-summit-step="4" hidden>
+      <span class="summit-step-label">CABARAN 04 · CARA PERJALANAN</span>
+      <h3 lang="ar" dir="rtl">بِمَاذَا تُسَافِرُ؟</h3>
+      <div class="summit-options">
+        <button type="button" class="summit-option" data-correct="true">.أُسَافِرُ بِالْقِطَارِ</button>
+        <button type="button" class="summit-option" data-correct="false">.أُسَافِرُ فِي الصَّبَاحِ</button>
+        <button type="button" class="summit-option" data-correct="false">.أَنَا أَرْكَبُ السَّفِينَةَ</button>
+      </div>
+      <p class="summit-feedback" aria-live="polite"></p>
+      <button type="button" class="summit-next-button" hidden>Cabaran Seterusnya →</button>
+    </article>
+
+    <article class="summit-challenge" data-summit-step="5" hidden>
+      <span class="summit-step-label">CABARAN 05 · PENGALAMAN</span>
+      <h3 lang="ar" dir="rtl">كَيْفَ سَفَرُكَ؟</h3>
+      <div class="summit-options summit-emoji-options">
+        <button type="button" class="summit-option" data-correct="true"><span>😊</span>.مُمْتِعٌ جِدًّا</button>
+        <button type="button" class="summit-option" data-correct="false"><span>🌙</span>.فِي الْمَسَاءِ</button>
+        <button type="button" class="summit-option" data-correct="false"><span>📍</span>.إِلَى كلنتن</button>
+      </div>
+      <p class="summit-feedback" aria-live="polite"></p>
+      <button type="button" class="summit-next-button" hidden>Buka Lencana Travel Master →</button>
+    </article>
+
+    <article class="summit-award" data-summit-step="6" hidden>
+      <div class="award-rays" aria-hidden="true"></div>
+      <div class="travel-master-badge" aria-label="Lencana Travel Master">
+        <span>✈️</span>
+        <strong>TRAVEL<br>MASTER</strong>
+        <small>ARBLOXIA AGENT</small>
+      </div>
+      <p class="summit-award-kicker">🏅 LENCANA DIBUKA</p>
+      <h3>Tahniah, Ejen ARBLOXIA!</h3>
+      <p>Anda telah menguasai <span lang="ar" dir="rtl">الجُمْلَةُ الْبَسِيطَةُ</span> dan menamatkan Level 1.</p>
+      <div class="summit-complete-banner">🏆 MISI KEMUNCAK SELESAI · +50 XP</div>
+
+      <div class="certificate-download-card">
+        <label for="certificateName">Nama penerima sijil</label>
+        <input
+          type="text"
+          id="certificateName"
+          maxlength="60"
+          placeholder="Taip nama murid"
+          autocomplete="name"
+        >
+        <button type="button" id="downloadCertificate" class="certificate-download-button">
+          📥 DOWNLOAD SIJIL TRAVEL MASTER
+        </button>
+        <p id="certificateStatus" class="certificate-status" aria-live="polite"></p>
+      </div>
+
+      <div class="award-navigation-actions">
+        <button type="button" id="summitReplay" class="summit-replay-button">🔄 MAIN SEMULA MISI KEMUNCAK</button>
+        <button type="button" class="return-home-button summit-replay-button">🏠 KEMBALI KE HOME</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+    <section class="learning-panel" id="panel14">
+
+      <h2>Jumlah Basitoh 3</h2>
+
+      <div class="learning-sentence">
+        بِمَاذَا تُسَافِرُ؟
+      </div>
+
+      <div class="learning-sentence">
+        أُسَافِرُ بِالطَّائِرَةِ.
+      </div>
+
+      <p class="panel-note">
+        Murid menggantikan jenis kenderaan mengikut Kad Ejen.
+      </p>
+
+    </section>
+
+    <section class="level1-passport-section" id="level1PassportSection" aria-labelledby="level1PassportTitle">
+      <div class="level1-passport-heading">
+        <div>
+          <span class="level1-passport-kicker">🛂 REKOD PENCAPAIAN EJEN</span>
+          <h2 id="level1PassportTitle">Travel Passport · Level 1</h2>
+          <p>Setiap misi yang diselesaikan akan menerima satu cop digital.</p>
+        </div>
+        <div class="level1-passport-count"><strong id="level1PassportCount">0/4</strong><span>cop diterima</span></div>
+      </div>
+
+      <div class="level1-passport-book">
+        <div class="level1-passport-cover">
+          <img src="IMAGES/logo-arbloxia.png" alt="Logo ARBLOXIA">
+          <span>ARBLOXIA AGENT</span>
+          <strong>TRAVEL<br>PASSPORT</strong>
+          <small>LEVEL 1 · JUMLAH BASITOH</small>
+        </div>
+        <div class="level1-passport-page">
+          <div class="level1-stamp" data-passport-stamp="mission01">
+            <span class="stamp-icon">🚢</span><b>MISSION 01</b><small>Pengangkutan</small><em>Belum dicop</em>
+          </div>
+          <div class="level1-stamp" data-passport-stamp="mission02">
+            <span class="stamp-icon">📍</span><b>MISSION 02</b><small>Destinasi & Masa</small><em>Belum dicop</em>
+          </div>
+          <div class="level1-stamp" data-passport-stamp="mission03">
+            <span class="stamp-icon">🚆</span><b>MISSION 03</b><small>Cara & Pengalaman</small><em>Belum dicop</em>
+          </div>
+          <div class="level1-stamp summit-stamp" data-passport-stamp="summit">
+            <span class="stamp-icon">🏅</span><b>MISI KEMUNCAK</b><small>Travel Master</small><em>Belum dicop</em>
+          </div>
+        </div>
+      </div>
+      <p class="level1-passport-status" id="level1PassportStatus">Lengkapkan Mission 01 untuk menerima cop pertama.</p>
+    </section>
+
+    <div class="mission-complete-toast" id="missionCompleteToast" role="status" aria-live="polite" hidden>
+      <div class="mission-complete-toast-icon" id="missionCompleteToastIcon">🎉</div>
+      <div>
+        <strong id="missionCompleteToastTitle">Misi Selesai!</strong>
+        <p id="missionCompleteToastText">Travel Passport telah dikemas kini.</p>
+      </div>
+    </div>
+
+    <section class="component-grid">
+
+      <article class="component-card">
+
+        <h2>📡 Aktifkan Dossier</h2>
+
+        <p>
+          Murid mengimbas Kad Ejen ARBLOXIA atau Smart Cube
+          untuk melihat kandungan Augmented Reality.
+        </p>
+
+        <button class="component-button" disabled>
+          AR Akan Disambungkan
+        </button>
+
+      </article>
+
+      <article class="component-card">
+
+        <h2>🔊 Audio Sebutan</h2>
+
+        <p>
+          Murid mendengar sebutan kosa kata dan Jumlah Basitoh,
+          kemudian mengulang sebutan secara individu atau berkumpulan.
+        </p>
+
+        <button class="component-button" disabled>
+          Audio Akan Dimasukkan
+        </button>
+
+      </article>
+
+      <article class="component-card">
+
+        <h2>🎬 Video AI Pembelajaran</h2>
+
+        <p>
+          Video AI mengandungi lagu pembelajaran bagi membantu
+          murid mengingat ayat dan struktur Jumlah Basitoh.
+        </p>
+
+        <button class="component-button" disabled>
+          Video Akan Dimasukkan
+        </button>
+
+      </article>
+
+      <article class="component-card">
+
+        <h2>🎮 Cabaran Misi</h2>
+
+        <p>
+          Murid menjawab soalan, memadankan gambar,
+          memilih jawapan dan membina ayat mudah.
+        </p>
+
+        <button class="component-button" disabled>
+          Permainan Akan Dibina
+        </button>
+
+      </article>
+
+    </section>
+
+    <section class="badge-section" id="travelMasterBadgeSection">
+
+      <div class="badge-icon" id="travelMasterBadgeIcon">🏅</div>
+
+      <span class="badge-status-label" id="travelMasterBadgeStatus">🔒 BELUM DIBUKA</span>
+      <h2 id="travelMasterBadgeTitle">Badge Ejen Jumlah Basitoh</h2>
+
+      <p id="travelMasterBadgeText">
+        Selesaikan Misi Kemuncak untuk memperoleh Lencana Travel Master.
+      </p>
+
+      <div class="travel-master-stars" aria-hidden="true">✦ ✧ ✦</div>
+
+    </section>
+
+    <section class="travel-master-resource-card" id="travelMasterResourceCard" aria-labelledby="travelMasterResourceTitle">
+      <div class="travel-master-resource-icon" id="travelMasterResourceIcon">📘</div>
+      <div class="travel-master-resource-copy">
+        <span class="travel-master-resource-kicker">BAHAN PENGUKUHAN</span>
+        <h2 id="travelMasterResourceTitle">Flipbook Travel Master</h2>
+        <p id="travelMasterResourceText">
+          Selesaikan Misi Kemuncak untuk membuka bahan ulang kaji interaktif Jumlah Basitoh.
+        </p>
+      </div>
+      <button type="button" id="travelMasterResourceButton" class="travel-master-resource-button" disabled>
+        🔒 BAHAN BELUM DIBUKA
+      </button>
+    </section>
+
+    <section class="level2-unlock-card" id="level2UnlockCard" aria-labelledby="level2UnlockTitle">
+      <div class="level2-unlock-symbol" id="level2UnlockSymbol">🔒</div>
+      <div class="level2-unlock-copy">
+        <span class="level2-unlock-kicker">TAHAP SETERUSNYA</span>
+        <h2 id="level2UnlockTitle">Level 2 · Jumlah Mutanasiqah</h2>
+        <p id="level2UnlockText">Lengkapkan Misi Kemuncak untuk membuka tahap pengembangan ayat.</p>
+        <p class="level2-arabic" lang="ar" dir="rtl">الجُمْلَةُ الْمُتَنَاسِقَةُ</p>
+      </div>
+      <button type="button" id="level2UnlockButton" class="level2-unlock-button" disabled>
+        🔒 LEVEL 2 BELUM DIBUKA
+      </button>
+    </section>
+
+
+
+    <section class="level2-content" id="level2Content" hidden aria-labelledby="level2Heading">
+      <div class="level2-content-hero">
+        <span class="level2-content-kicker">🔓 LEVEL 2 · PENGEMBANGAN AYAT</span>
+        <h2 id="level2Heading">Jumlah Mutanasiqah</h2>
+        <p class="level2-content-arabic" lang="ar" dir="rtl">الجُمْلَةُ الْمُتَنَاسِقَةُ</p>
+        <p>Sila baca dan fahami ayat pada gambar di bawah dan jawab soalan berdasarkan bahan buku teks.</p>
+      </div>
+
+      <div class="level2-mission-grid">
+        <article class="level2-mission-card" data-level2-mission="04">
+          <img src="IMAGES/mutanasiqah_bus.jpg" alt="Bas sekolah dan ayat Jumlah Mutanasiqah">
+          <div class="level2-mission-copy">
+            <span>MISSION 04 · BAS KE KAMPUNG</span>
+            <h3 lang="ar" dir="rtl">هٰذِهِ حَافِلَةٌ.</h3>
+            <p>Bina tiga ayat yang saling berkaitan.</p>
+            <button type="button" class="level2-start-button" data-open-level2="04">🚌 MULAKAN MISSION 04</button>
+          </div>
+        </article>
+
+        <article class="level2-mission-card" data-level2-mission="05">
+          <img src="IMAGES/mutanasiqah_train.jpg" alt="Kereta api elektrik dan ayat Jumlah Mutanasiqah">
+          <div class="level2-mission-copy">
+            <span>MISSION 05 · KERETA API ELEKTRIK</span>
+            <h3 lang="ar" dir="rtl">هٰذَا قِطَارٌ كَهْرَبَائِيٌّ.</h3>
+            <p>Lengkapkan penerangan dan ayat seruan.</p>
+            <button type="button" class="level2-start-button" data-open-level2="05">🚆 MULAKAN MISSION 05</button>
+          </div>
+        </article>
+
+        <article class="level2-mission-card mission06-card" data-level2-mission="06">
+          <div class="mission06-visual" aria-hidden="true">🚌 <span>+</span> 🚆</div>
+          <div class="level2-mission-copy">
+            <span>MISSION 06 · CABARAN GABUNGAN</span>
+            <h3 lang="ar" dir="rtl">الجُمْلَةُ الْمُتَنَاسِقَةُ</h3>
+            <p>Bezakan, padankan dan susun ayat bas serta kereta api elektrik.</p>
+            <button type="button" class="level2-start-button" data-open-level2="06">🧩 MULAKAN MISSION 06</button>
+          </div>
+        </article>
+
+        <article class="level2-mission-card level2-boss-card" id="level2BossCard" data-level2-mission="boss">
+          <div class="level2-boss-visual" aria-hidden="true">👑</div>
+          <div class="level2-mission-copy">
+            <span>MISI KEMUNCAK · WORLD 2</span>
+            <h3>SENTENCE ARCHITECT</h3>
+            <p>Lengkapkan cabaran terakhir untuk memperoleh lencana dan sijil Jumlah Mutanasiqah.</p>
+            <button type="button" class="level2-start-button" id="openLevel2Boss" disabled>🔒 SELESAIKAN MISSION 04–06</button>
+          </div>
+        </article>
+      </div>
+
+      <section class="level2-builder" id="level2Mission04" hidden>
+        <button type="button" class="level2-close">✕ Tutup</button>
+        <div class="level2-builder-head">
+          <span>MISSION 04</span><h3>Bas ke Kampung</h3>
+        </div>
+        <img src="IMAGES/mutanasiqah_bus.jpg" alt="Bas sekolah" class="level2-builder-image">
+        <div class="level2-question" data-l2q="04-1">
+          <p>Yang manakah bermaksud ‘Ini bas’?</p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="true">هٰذِهِ حَافِلَةٌ.</button>
+            <button data-correct="false">هٰذَا قِطَارٌ كَهْرَبَائِيٌّ.</button>
+            <button data-correct="false">هٰذِهِ سَفِينَةٌ.</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question" data-l2q="04-2">
+          <p>Dia musafir menaiki apa?</p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="false">أُسَافِرُ بِالطَّائِرَةِ إِلَى الْمَدِينَةِ.</button>
+            <button data-correct="true">أُسَافِرُ بِالْحَافِلَةِ إِلَى الْقَرْيَةِ.</button>
+            <button data-correct="false">أَرْكَبُ الدَّرَّاجَةَ إِلَى الْمَدْرَسَةِ.</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question" data-l2q="04-3">
+          <p>Alangkah besarnya bas ini!</p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="false">مَا أَسْرَعَ هٰذِهِ الْحَافِلَةَ!</button>
+            <button data-correct="true">مَا أَكْبَرَ هٰذِهِ الْحَافِلَةَ!</button>
+            <button data-correct="false">مَا أَجْمَلَ هٰذَا الْقِطَارَ!</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-result" hidden>🎉 Mission 04 selesai · Cop Bas diterima!</div>
+      </section>
+
+      <section class="level2-builder" id="level2Mission05" hidden>
+        <button type="button" class="level2-close">✕ Tutup</button>
+        <div class="level2-builder-head">
+          <span>MISSION 05</span><h3>Kereta Api Elektrik</h3>
+        </div>
+        <img src="IMAGES/mutanasiqah_train.jpg" alt="Kereta api elektrik" class="level2-builder-image">
+        <div class="level2-question" data-l2q="05-1">
+          <p>Ini apa?</p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="true">هٰذَا قِطَارٌ كَهْرَبَائِيٌّ.</button>
+            <button data-correct="false">هٰذِهِ حَافِلَةٌ.</button>
+            <button data-correct="false">هٰذَا قَارِبٌ.</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question" data-l2q="05-2">
+          <p>Kereta api elektrik itu baru. </p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="false">الْحَافِلَةُ كَبِيرَةٌ.</button>
+            <button data-correct="true">الْقِطَارُ الْكَهْرَبَائِيُّ جَدِيدٌ.</button>
+            <button data-correct="false">الطَّائِرَةُ سَرِيعَةٌ.</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question" data-l2q="05-3">
+          <p>Alangkah lajunya kereta api elektrik ini!</p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="false">مَا أَكْبَرَ هٰذَا الْقِطَارَ الْكَهْرَبَائِيَّ!</button>
+            <button data-correct="true">مَا أَسْرَعَ هٰذَا الْقِطَارَ الْكَهْرَبَائِيَّ!</button>
+            <button data-correct="false">مَا أَجْمَلَ هٰذِهِ الْحَافِلَةَ!</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-result" hidden>🎉 Mission 05 selesai · Cop Kereta Api diterima!</div>
+      </section>
+
+      <section class="level2-builder mission06-builder" id="level2Mission06" hidden>
+        <button type="button" class="level2-close">✕ Tutup</button>
+        <div class="level2-builder-head"><span>MISSION 06</span><h3>Cabaran Gabungan</h3></div>
+        <div class="mission06-split-images">
+          <img src="IMAGES/mutanasiqah_bus.jpg" alt="Bas sekolah">
+          <img src="IMAGES/mutanasiqah_train.jpg" alt="Kereta api elektrik">
+        </div>
+        <div class="level2-question" data-l2q="06-1">
+          <p>Pilih ayat yang menerangkan gambar bas.</p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="true">هٰذِهِ حَافِلَةٌ.</button>
+            <button data-correct="false">هٰذَا قِطَارٌ كَهْرَبَائِيٌّ.</button>
+            <button data-correct="false">الْقِطَارُ الْكَهْرَبَائِيُّ جَدِيدٌ.</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question" data-l2q="06-2">
+          <p>Pilih ayat perjalanan yang berkaitan dengan bas.</p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="false">مَا أَسْرَعَ هٰذَا الْقِطَارَ الْكَهْرَبَائِيَّ!</button>
+            <button data-correct="true">أُسَافِرُ بِالْحَافِلَةِ إِلَى الْقَرْيَةِ.</button>
+            <button data-correct="false">الْقِطَارُ الْكَهْرَبَائِيُّ جَدِيدٌ.</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question" data-l2q="06-3">
+          <p>Pilih ayat yang menerangkan keadaan kereta api elektrik.</p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="false">مَا أَكْبَرَ هٰذِهِ الْحَافِلَةَ!</button>
+            <button data-correct="true">الْقِطَارُ الْكَهْرَبَائِيُّ جَدِيدٌ.</button>
+            <button data-correct="false">هٰذِهِ حَافِلَةٌ.</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question" data-l2q="06-4">
+          <p>Alangkah pantasnya pergerakan kereta api elektrik ini!</p>
+          <div class="level2-options" dir="rtl">
+            <button data-correct="true">مَا أَسْرَعَ هٰذَا الْقِطَارَ الْكَهْرَبَائِيَّ!</button>
+            <button data-correct="false">مَا أَكْبَرَ هٰذِهِ الْحَافِلَةَ!</button>
+            <button data-correct="false">هٰذَا قِطَارٌ كَهْرَبَائِيٌّ.</button>
+          </div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-result" hidden>🎉 Mission 06 selesai · Misi Kemuncak World 2 dibuka!</div>
+      </section>
+
+      <section class="level2-builder level2-boss-panel" id="level2BossPanel" hidden>
+        <button type="button" class="level2-close">✕ Tutup</button>
+        <div class="level2-builder-head"><span>👑 MISI KEMUNCAK</span><h3>Sentence Architect</h3></div>
+        <p class="boss-instruction">Pilih lima jawapan tepat berdasarkan ayat buku teks.</p>
+        <div class="level2-boss-progress"><div id="level2BossFill"></div></div>
+        <p id="level2BossProgressText">0 / 5 cabaran selesai</p>
+
+        <div class="level2-question boss-question" data-bossq="1">
+          <p>Ayat manakah memperkenalkan bas?</p>
+          <div class="level2-options" dir="rtl"><button data-correct="true">هٰذِهِ حَافِلَةٌ.</button><button data-correct="false">هٰذَا قِطَارٌ كَهْرَبَائِيٌّ.</button></div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question boss-question" data-bossq="2">
+          <p>Ayat manakah menerangkan perjalanan ke kampung?</p>
+          <div class="level2-options" dir="rtl"><button data-correct="true">أُسَافِرُ بِالْحَافِلَةِ إِلَى الْقَرْيَةِ.</button><button data-correct="false">الْقِطَارُ الْكَهْرَبَائِيُّ جَدِيدٌ.</button></div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question boss-question" data-bossq="3">
+          <p>Ayat manakah menerangkan kereta api elektrik itu baharu?</p>
+          <div class="level2-options" dir="rtl"><button data-correct="false">مَا أَكْبَرَ هٰذِهِ الْحَافِلَةَ!</button><button data-correct="true">الْقِطَارُ الْكَهْرَبَائِيُّ جَدِيدٌ.</button></div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question boss-question" data-bossq="4">
+          <p>Pilih ayat seruan yang menunjukkan bas itu besar.</p>
+          <div class="level2-options" dir="rtl"><button data-correct="true">مَا أَكْبَرَ هٰذِهِ الْحَافِلَةَ!</button><button data-correct="false">مَا أَسْرَعَ هٰذَا الْقِطَارَ الْكَهْرَبَائِيَّ!</button></div><p class="level2-feedback"></p>
+        </div>
+        <div class="level2-question boss-question" data-bossq="5">
+          <p>Pilih ayat seruan untuk kenderaan laju.</p>
+          <div class="level2-options" dir="rtl"><button data-correct="false">مَا أَكْبَرَ هٰذِهِ الْحَافِلَةَ!</button><button data-correct="true">مَا أَسْرَعَ هٰذَا الْقِطَارَ الْكَهْرَبَائِيَّ!</button></div><p class="level2-feedback"></p>
+        </div>
+
+        <div class="sentence-architect-award" id="sentenceArchitectAward" hidden>
+          <div class="sentence-architect-medal">⭐</div>
+          <span>WORLD 2 COMPLETE</span>
+          <h2>SENTENCE ARCHITECT</h2>
+          <p lang="ar" dir="rtl">الجُمْلَةُ الْمُتَنَاسِقَةُ</p>
+          <p>Tahniah! Anda telah menguasai Jumlah Mutanasiqah.</p>
+          <label for="sentenceArchitectName">Nama Ejen</label>
+          <input id="sentenceArchitectName" type="text" placeholder="Masukkan nama murid">
+          <button type="button" id="downloadSentenceArchitectCertificate">📥 DOWNLOAD SIJIL SENTENCE ARCHITECT</button>
+          <p id="sentenceArchitectCertificateStatus" aria-live="polite"></p>
+          <div class="award-navigation-actions">
+            <button type="button" id="replayLevel2Boss">🔄 MAIN SEMULA MISI KEMUNCAK</button>
+            <button type="button" class="return-home-button">🏠 KEMBALI KE HOME</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="world2-complete-card" id="world2CompleteCard" hidden>
+        <div class="world2-complete-icon">🏆</div>
+        <span>WORLD 2 COMPLETE</span>
+        <h2>Sentence Architect</h2>
+        <p>Mission 04, 05, 06 dan Misi Kemuncak telah diselesaikan.</p>
+        <div class="world2-complete-actions">
+          <button type="button" id="openWorld2Certificate">📜 LIHAT SIJIL</button>
+          <button type="button" id="returnToHQ">🏠 KEMBALI KE HQ</button>
+        </div>
+        <div class="world3-coming-soon">🔒 WORLD 3 · COMING SOON</div>
+      </section>
+    </section>
+
+    <section class="certificate-access-card" id="certificateAccessCard">
+      <div class="certificate-access-icon" id="certificateAccessIcon">🔒</div>
+      <div class="certificate-access-copy">
+        <span class="certificate-access-kicker">SIJIL DIGITAL</span>
+        <h2>Sijil Travel Master</h2>
+        <p id="certificateAccessText">Selesaikan Misi Kemuncak untuk membuka ruang nama dan butang muat turun sijil.</p>
+      </div>
+      <button type="button" id="certificateAccessButton" class="certificate-access-button" disabled>
+        🔒 SIJIL BELUM DIBUKA
+      </button>
+    </section>
+
+
+    <div class="owner-brand-strip">
+      <img src="IMAGES/logo-ummu-sofiy-channel.png" alt="Logo Muallimah Ummu Sofiy Channel">
+      <div><strong>Ummu Sofiy Channel</strong><br><span>"أَتَمَنَّى أَنْ نَكُونَ نَافِعِينَ"</span></div>
+    </div>
+
+    <div class="arbloxia-footer-status">
+      ARBLOXIA PILOT v1.0 · Build 5.2 · #SimpleTapiSampai · Pengenalan → Jumlah Basitoh → Jumlah Mutanasiqah
+    </div>
+
+  </main>
+  <script src="config.js"></script>
+  <script src="analytics.js"></script>
+  <script src="storage.js"></script>
+  <script src="audio.js"></script>
+  <script src="progress.js"></script>
+  <script src="passport.js"></script>
+  <script src="app.js"></script>
+  <script src="level2.js"></script>
+
+  <script>
+    (function(){
+      const hq=document.getElementById('arbloxiaHQ');
+      const enter=document.getElementById('enterArbloxiaButton');
+      const newAgent=document.getElementById('newAgentButton');
+      const agentLabel=document.getElementById('hqAgentName');
+      const agentKey='arbloxia_agent_name';
+
+      function getAgent(){ return (localStorage.getItem(agentKey)||'').trim(); }
+      function renderAgent(){
+        const name=getAgent();
+        if(agentLabel) agentLabel.textContent=name || 'Belum ditetapkan';
+      }
+      function askAgentName(message){
+        const value=window.prompt(message || 'Masukkan nama ejen / murid:','');
+        if(value===null) return null;
+        const name=value.trim();
+        if(!name){ window.alert('Sila masukkan nama ejen terlebih dahulu.'); return ''; }
+        return name;
+      }
+      function startNewAgent(){
+        const current=getAgent();
+        if(current){
+          const ok=window.confirm('Mulakan sesi untuk ejen baharu?\n\nKemajuan '+current+' pada peranti ini akan dikosongkan.');
+          if(!ok) return;
+        }
+        const name=askAgentName('Masukkan nama ejen / peserta baharu:');
+        if(name===null || name==='') return;
+        if(window.ArbloxiaStorage) window.ArbloxiaStorage.reset();
+        // Bersihkan rekod sesi/ganjaran lama supaya ejen baharu benar-benar bermula 0.
+        ['arbloxia_certificate_name','arbloxia_mission02_audio','arbloxia_mission03','arbloxia_level2_state'].forEach(function(k){ localStorage.removeItem(k); });
+        localStorage.setItem(agentKey,name);
+        // Nama pada ruang sijil akan diisi semula untuk peserta baharu.
+        localStorage.removeItem('arbloxia_certificate_name');
+        window.location.href='index.html?newAgent=1';
+      }
+
+      if(newAgent) newAgent.addEventListener('click',startNewAgent);
+      if(enter&&hq){
+        enter.addEventListener('click',function(){
+          if(!getAgent()){
+            const name=askAgentName('Sebelum bermula, masukkan nama ejen / murid:');
+            if(name===null || name==='') return;
+            localStorage.setItem(agentKey,name);
+            if(new URLSearchParams(window.location.search).get('newAgent')==='1' && window.ArbloxiaStorage){
+        // Pastikan tiada state JavaScript lama terbawa ke peserta baharu.
+        window.ArbloxiaStorage.reset();
+        if(window.history && window.history.replaceState){ window.history.replaceState({},'', 'index.html'); }
+      }
+      renderAgent();
+          }
+          hq.hidden=true;
+          document.body.style.overflow='';
+          const intro=document.getElementById('kalimahIntro');
+          if(intro && !intro.hidden){ intro.scrollIntoView({behavior:'smooth',block:'start'}); }
+          else { document.querySelector('main.container')?.scrollIntoView({behavior:'smooth',block:'start'}); }
+        });
+        document.body.style.overflow='hidden';
+      }
+      renderAgent();
+    })();
+  </script>
+
+
+<script>
+(function(){
+  const btn=document.getElementById('playAriaIntro');
+  const audio=document.getElementById('ariaIntroAudio');
+  if(!btn||!audio) return;
+  btn.addEventListener('click',function(){
+    audio.currentTime=0;
+    audio.play().then(function(){
+      btn.textContent='🔊 ARIA SEDANG BERCAKAP...';
+    }).catch(function(){
+      btn.textContent='🔊 DENGAR ARIA';
+    });
+  });
+  audio.addEventListener('ended',function(){ btn.textContent='🔊 DENGAR ARIA'; });
+})();
+</script>
+</body>
+</html>
