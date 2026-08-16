@@ -356,13 +356,9 @@
 
 
 /* ===== ARBLOXIA HQ v5.1 ===== */
-.hq-screen{position:fixed;inset:0;z-index:99999;overflow:auto;
-  background:
-    linear-gradient(rgba(1,10,24,.68),rgba(1,10,24,.82)),
-    url("IMAGES/arbloxia_mission_hq.png") center center / cover fixed no-repeat;
-  padding:28px 18px;color:#fff}
+.hq-screen{position:fixed;inset:0;z-index:99999;overflow:auto;background:radial-gradient(circle at 50% 15%,#174c82 0,#071a36 42%,#020713 100%);padding:28px 18px;color:#fff}
 .hq-screen[hidden]{display:none!important}
-.hq-shell{width:min(1180px,96%);margin:auto;border:1px solid rgba(255,209,92,.55);border-radius:28px;background:rgba(4,20,45,.88);box-shadow:0 25px 80px rgba(0,0,0,.5);overflow:hidden}
+.hq-shell{width:min(1180px,96%);margin:auto;border:1px solid rgba(255,209,92,.55);border-radius:28px;background:rgba(4,20,45,.94);box-shadow:0 25px 80px rgba(0,0,0,.5);overflow:hidden}
 .hq-hero{display:grid;grid-template-columns:220px 1fr 280px;gap:24px;align-items:center;padding:30px;background:linear-gradient(135deg,rgba(17,63,112,.94),rgba(4,20,45,.96));border-bottom:1px solid rgba(56,214,255,.3)}
 .hq-channel-logo{width:190px;max-height:190px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(255,196,34,.35))}
 .hq-welcome{text-align:center}.hq-welcome .arabic{font-family:"Traditional Arabic","Noto Naskh Arabic",serif;font-size:clamp(42px,6vw,72px);line-height:1;color:#ffd15c}.hq-welcome h1{font-size:clamp(28px,4vw,48px);margin:8px 0;color:#fff}.hq-welcome h1 span{color:#ffd15c}.hq-welcome p{color:#d9e7f6;line-height:1.6}
@@ -381,66 +377,6 @@
 @media(max-width:680px){.hq-agent-session{flex-direction:column;align-items:stretch}.hq-agent-session>div{text-align:center}.hq-new-agent{width:100%}}
 .award-navigation-actions .return-home-button{border:1px solid #39e58c;background:linear-gradient(90deg,#0d6b59,#16966f);color:#fff;border-radius:14px;padding:14px 20px;font-weight:900;cursor:pointer}
 @media(max-width:600px){.award-navigation-actions{flex-direction:column}.award-navigation-actions button{width:100%}}
-
-/* ===== HQ KAD EJEN ARBLOXIA ===== */
-.hq-agent-cards{max-width:760px;margin:12px auto 8px;padding:16px;border:1px solid rgba(56,214,255,.42);border-radius:16px;background:linear-gradient(135deg,rgba(5,38,67,.9),rgba(4,22,42,.96));display:flex;align-items:center;justify-content:space-between;gap:16px}
-.hq-agent-cards-copy{text-align:left}.hq-agent-cards-copy strong{display:block;color:#38d6ff;font-size:1rem;margin-bottom:5px}.hq-agent-cards-copy span{display:block;color:#d9e7f6;line-height:1.45;font-size:.9rem}.hq-agent-cards-button{border:1px solid #ffd15c;background:linear-gradient(90deg,#c97800,#f0a31b);color:#07172e;border-radius:12px;padding:12px 16px;font-weight:900;cursor:pointer;white-space:nowrap}.hq-agent-cards-button:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.agent-card-modal{position:fixed;inset:0;z-index:100500;display:grid;place-items:center;padding:18px;background:rgba(0,7,18,.86);backdrop-filter:blur(8px)}.agent-card-modal[hidden]{display:none!important}.agent-card-dialog{position:relative;width:min(1050px,96vw);max-height:90vh;overflow:auto;border:1px solid rgba(255,209,92,.65);border-radius:24px;background:linear-gradient(145deg,#0b2c50,#04152d);box-shadow:0 30px 90px rgba(0,0,0,.65);padding:26px}.agent-card-close{position:absolute;right:16px;top:14px;border:1px solid #ff6f91;background:#351326;color:#fff;border-radius:10px;padding:9px 13px;font-weight:800;cursor:pointer}.agent-card-dialog h2{text-align:center;color:#ffd15c;margin:4px 48px 8px}.agent-card-dialog>p{text-align:center;color:#d9e7f6;margin-bottom:20px}.agent-card-groups{display:grid;grid-template-columns:1fr 1fr;gap:20px}.agent-card-group{border:1px solid rgba(56,214,255,.35);border-radius:18px;padding:18px;background:rgba(3,21,45,.72)}.agent-card-group h3{text-align:center;color:#38d6ff;margin-bottom:14px}.agent-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.agent-card-item{overflow:hidden;border:1px solid rgba(255,255,255,.16);border-radius:15px;background:rgba(4,28,55,.9)}.agent-card-item img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}.agent-card-meta{padding:12px}.agent-card-meta strong{display:block;color:#fff;text-align:center;margin-bottom:9px}.agent-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.agent-card-actions a{display:block;text-align:center;text-decoration:none;border-radius:9px;padding:9px 8px;font-size:.82rem;font-weight:900}.agent-card-open{border:1px solid #38d6ff;color:#fff;background:rgba(22,185,227,.22)}.agent-card-download{border:1px solid #53e8a0;color:#07172e;background:#53e8a0}.agent-card-note{margin-top:18px;padding:12px 14px;border-left:4px solid #ffd15c;border-radius:10px;background:rgba(255,209,92,.08);color:#eaf4ff;line-height:1.55;font-size:.92rem}
-@media(max-width:760px){.hq-agent-cards{flex-direction:column;text-align:center}.hq-agent-cards-copy{text-align:center}.hq-agent-cards-button{width:100%}.agent-card-groups{grid-template-columns:1fr}.agent-card-dialog{padding:22px 14px}.agent-card-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.agent-card-grid{grid-template-columns:1fr}.agent-card-actions{grid-template-columns:1fr}}
-
-
-/* ===== WORLD 2 · VIDEO JUMLAH MUTANASIQAH ===== */
-.level2-learning-video{margin:24px 0 28px;padding:24px;border:1px solid rgba(83,232,160,.55);border-radius:20px;background:linear-gradient(145deg,rgba(5,38,67,.94),rgba(4,22,42,.97));box-shadow:0 18px 45px rgba(0,0,0,.24)}
-.level2-video-copy{text-align:center;margin-bottom:18px}.level2-video-copy span{display:block;color:#53e8a0;font-weight:900;letter-spacing:.12em;font-size:.82rem;margin-bottom:7px}.level2-video-copy h3{color:#ffd15c;font-size:clamp(24px,3vw,34px);margin-bottom:8px}.level2-video-copy p{color:#d9e7f6;line-height:1.6;max-width:760px;margin:auto}
-.level2-learning-video .video-container{max-width:820px;margin:0 auto 14px}.level2-learning-video .video-link-button{max-width:820px;margin:0 auto;display:block;text-align:center;text-decoration:none}
-@media(max-width:650px){.level2-learning-video{padding:16px}.hq-screen{background-attachment:scroll}}
-/* ==================================================
-   ARBLOXIA HQ - PAPARAN 100% RESPONSIF
-   ================================================== */
-
-.hq-screen{
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  overflow: auto;
-
-  background:
-    linear-gradient(
-      rgba(1,10,25,.28),
-      rgba(1,10,25,.38)
-    ),
-    url("IMAGES/arbloxia_mission_hq.png");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
-  padding: 28px 18px;
-  color: #fff;
-}
-
-..hq-shell{
-  width: min(1180px, 82%);
-  margin: auto;
-  border: 1px solid rgba(255,209,92,.55);
-  border-radius: 28px;
-
-  background: rgba(4,20,45,.88);
-
-  box-shadow: 0 25px 80px rgba(0,0,0,.5);
-  overflow: hidden;
-}
-
-.hq-hero{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(17,63,112,.88),
-      rgba(4,20,45,.90)
-    );
-}
 </style>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -498,59 +434,12 @@
           <div><span>👤 EJEN SEMASA</span><strong id="hqAgentName">Belum ditetapkan</strong></div>
           <button type="button" id="newAgentButton" class="hq-new-agent">🔄 TUKAR EJEN / PESERTA BAHARU</button>
         </div>
-
-        <div class="hq-agent-cards">
-          <div class="hq-agent-cards-copy">
-            <strong>🎫 DAPATKAN KAD EJEN</strong>
-            <span>Pilih Kad Ejen Mission 01 atau Mission 02 untuk dibuka, disimpan atau dicetak sebelum aktiviti WebAR.</span>
-          </div>
-          <button type="button" id="openAgentCards" class="hq-agent-cards-button">🎴 LIHAT KAD EJEN</button>
-        </div>
         <button type="button" id="enterArbloxiaButton" class="hq-start">🚀 MULAKAN PENGEMBARAAN</button>
       </div>
       <div class="hq-footer">© 2026 ARBLOXIA · Dibangunkan oleh Muallimah Ummu Sofiy Channel</div>
     </div>
   </section>
 
-
-
-  <!-- GALERI KAD EJEN ARBLOXIA -->
-  <section id="agentCardsModal" class="agent-card-modal" hidden aria-modal="true" role="dialog" aria-labelledby="agentCardsTitle">
-    <div class="agent-card-dialog">
-      <button type="button" id="closeAgentCards" class="agent-card-close" aria-label="Tutup galeri Kad Ejen">✕ Tutup</button>
-      <h2 id="agentCardsTitle">🎫 Kad Ejen ARBLOXIA</h2>
-      <p>Pilih kad mengikut misi dan ejen. Buka pada skrin lain atau simpan/cetak untuk aktiviti imbasan WebAR.</p>
-      <div class="agent-card-groups">
-        <section class="agent-card-group">
-          <h3>MISSION 01 · PENGANGKUTAN</h3>
-          <div class="agent-card-grid">
-            <article class="agent-card-item">
-              <img src="WEBAR/cards/mission01_male.jpg" alt="Kad Ejen lelaki Mission 01">
-              <div class="agent-card-meta"><strong>👦 Ejen Lelaki</strong><div class="agent-card-actions"><a class="agent-card-open" href="WEBAR/cards/mission01_male.jpg" target="_blank" rel="noopener">🖼️ Buka Kad</a><a class="agent-card-download" href="WEBAR/cards/mission01_male.jpg" download>📥 Simpan</a></div></div>
-            </article>
-            <article class="agent-card-item">
-              <img src="WEBAR/cards/mission01_female.jpg" alt="Kad Ejen perempuan Mission 01">
-              <div class="agent-card-meta"><strong>👧 Ejen Perempuan</strong><div class="agent-card-actions"><a class="agent-card-open" href="WEBAR/cards/mission01_female.jpg" target="_blank" rel="noopener">🖼️ Buka Kad</a><a class="agent-card-download" href="WEBAR/cards/mission01_female.jpg" download>📥 Simpan</a></div></div>
-            </article>
-          </div>
-        </section>
-        <section class="agent-card-group">
-          <h3>MISSION 02 · DESTINASI & MASA</h3>
-          <div class="agent-card-grid">
-            <article class="agent-card-item">
-              <img src="WEBAR/cards/mission02_male.jpg" alt="Kad Ejen lelaki Mission 02">
-              <div class="agent-card-meta"><strong>👦 Ejen Lelaki</strong><div class="agent-card-actions"><a class="agent-card-open" href="WEBAR/cards/mission02_male.jpg" target="_blank" rel="noopener">🖼️ Buka Kad</a><a class="agent-card-download" href="WEBAR/cards/mission02_male.jpg" download>📥 Simpan</a></div></div>
-            </article>
-            <article class="agent-card-item">
-              <img src="WEBAR/cards/mission02_female.jpg" alt="Kad Ejen perempuan Mission 02">
-              <div class="agent-card-meta"><strong>👧 Ejen Perempuan</strong><div class="agent-card-actions"><a class="agent-card-open" href="WEBAR/cards/mission02_female.jpg" target="_blank" rel="noopener">🖼️ Buka Kad</a><a class="agent-card-download" href="WEBAR/cards/mission02_female.jpg" download>📥 Simpan</a></div></div>
-            </article>
-          </div>
-        </section>
-      </div>
-      <div class="agent-card-note"><strong>💡 Cara guna:</strong> Simpan/cetak kad, kemudian masuk ke misi dan tekan <b>Imbas Kad Ejen</b>. Untuk ujian menggunakan satu telefon, paparkan kad pada peranti kedua atau cetak kad terlebih dahulu.</div>
-    </div>
-  </section>
 
   <!-- STAGE 0: PENGENALAN KALIMAH -->
   <section id="kalimahIntro" class="kalimah-intro" aria-labelledby="kalimahIntroTitle">
@@ -1809,28 +1698,6 @@
         <p>Sila baca dan fahami ayat pada gambar di bawah dan jawab soalan berdasarkan bahan buku teks.</p>
       </div>
 
-      <!-- VIDEO NOTA & LAGU JUMLAH MUTANASIQAH -->
-      <section class="level2-learning-video" aria-labelledby="level2VideoTitle">
-        <div class="level2-video-copy">
-          <span>🎬 NOTA & LAGU PEMBELAJARAN</span>
-          <h3 id="level2VideoTitle">Video Jumlah Mutanasiqah</h3>
-          <p>Tonton nota dan lagu pembelajaran ini sebagai pengukuhan sebelum meneruskan Mission 04–06.</p>
-        </div>
-        <div class="video-container video-always-visible">
-          <iframe
-            class="learning-video"
-            src="https://www.youtube.com/embed/pAbR3cRbvis?rel=0"
-            title="Video Nota dan Lagu Jumlah Mutanasiqah ARBLOXIA"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <a href="https://www.youtube.com/watch?v=pAbR3cRbvis" target="_blank" rel="noopener noreferrer" class="action-button video-link-button">
-          ▶ Buka Video di YouTube
-        </a>
-      </section>
-
       <div class="level2-mission-grid">
         <article class="level2-mission-card" data-level2-mission="04">
           <img src="IMAGES/mutanasiqah_bus.jpg" alt="Bas sekolah dan ayat Jumlah Mutanasiqah">
@@ -2151,21 +2018,5 @@
   audio.addEventListener('ended',function(){ btn.textContent='🔊 DENGAR ARIA'; });
 })();
 </script>
-
-<script>
-(function(){
-  const openBtn=document.getElementById('openAgentCards');
-  const modal=document.getElementById('agentCardsModal');
-  const closeBtn=document.getElementById('closeAgentCards');
-  if(!openBtn||!modal||!closeBtn) return;
-  function openCards(){ modal.hidden=false; document.body.style.overflow='hidden'; closeBtn.focus(); }
-  function closeCards(){ modal.hidden=true; document.body.style.overflow='hidden'; openBtn.focus(); }
-  openBtn.addEventListener('click',openCards);
-  closeBtn.addEventListener('click',closeCards);
-  modal.addEventListener('click',function(e){ if(e.target===modal) closeCards(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!modal.hidden) closeCards(); });
-})();
-</script>
-
 </body>
 </html>

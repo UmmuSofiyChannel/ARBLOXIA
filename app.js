@@ -258,6 +258,10 @@ document.addEventListener("DOMContentLoaded", function () {
           setTimeout(() => aria.play("complete"), 900);
         }
       }
+
+      if (correct && button.closest("#mission02")) {
+        markMission02Checkpoint("challenge");
+      }
     });
   });
 
@@ -272,6 +276,97 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+/* =====================================
+   MISSION 02 — CHECKPOINT WAJIB
+   Scan + 4 Audio + Video + Cabaran
+===================================== */
+
+function getMission02State() {
+  return window.ArbloxiaStorage ? window.ArbloxiaStorage.load() : {};
+}
+
+function saveMission02State(state) {
+  if (window.ArbloxiaStorage) window.ArbloxiaStorage.save(state);
+}
+
+function mission02AllRequiredComplete(state) {
+  const cp = state.mission02Checkpoints || {};
+  return Boolean(cp.scan && cp.audio && cp.video && cp.challenge);
+}
+
+function renderMission02CheckpointState() {
+  const state = getMission02State();
+  const cp = state.mission02Checkpoints || {};
+  const panel = document.getElementById('mission02');
+  if (!panel) return;
+
+  const scanResult = panel.querySelector('.scan-result');
+  if (scanResult) {
+    scanResult.style.display = cp.scan ? 'block' : 'none';
+    if (cp.scan) scanResult.textContent = '✅ Dossier berjaya diaktifkan!';
+  }
+
+  const completionBox = document.getElementById('mission02AudioComplete');
+  if (completionBox) completionBox.hidden = !cp.audio;
+}
+
+function completeMission02IfReady() {
+  const state = getMission02State();
+  if (!mission02AllRequiredComplete(state)) {
+    state.mission02Complete = false;
+    saveMission02State(state);
+    if (window.ArbloxiaProgress) window.ArbloxiaProgress.render();
+    if (window.ArbloxiaPassport) window.ArbloxiaPassport.render();
+    return false;
+  }
+
+  if (!state.mission02Complete) {
+    state.mission02Complete = true;
+    saveMission02State(state);
+    if (window.ArbloxiaAudio) {
+      setTimeout(function () { window.ArbloxiaAudio.play('complete'); }, 450);
+    }
+  }
+
+  if (window.ArbloxiaProgress) window.ArbloxiaProgress.render();
+  if (window.ArbloxiaPassport) window.ArbloxiaPassport.render();
+  if (window.ArbloxiaRenderSummitAccess) window.ArbloxiaRenderSummitAccess();
+  return true;
+}
+
+function markMission02Checkpoint(name) {
+  const state = getMission02State();
+  state.mission02Checkpoints = state.mission02Checkpoints || {};
+  state.mission02Checkpoints[name] = true;
+  state.mission02Complete = false;
+  saveMission02State(state);
+  renderMission02CheckpointState();
+  completeMission02IfReady();
+}
+
+// Selepas kembali daripada WebAR, baca status scan yang telah disimpan oleh ar.html.
+document.addEventListener('DOMContentLoaded', function () {
+  const state = getMission02State();
+  state.mission02Checkpoints = state.mission02Checkpoints || {};
+
+  // Migrasi keselamatan: versi lama menandakan Mission 02 selesai selepas audio sahaja.
+  if (state.mission02Complete && !mission02AllRequiredComplete(state)) {
+    state.mission02Complete = false;
+    state.mission03Complete = false;
+    state.summitComplete = false;
+    saveMission02State(state);
+  }
+
+  renderMission02CheckpointState();
+
+  // Video Mission 02 dikira selepas murid menekan pautan video YouTube.
+  document.querySelectorAll('#mission02 .video-link-button').forEach(function (link) {
+    link.addEventListener('click', function () {
+      markMission02Checkpoint('video');
+    });
+  });
+});
+
 /*=====================================
 MISSION 02 AUDIO
 =====================================*/
@@ -391,53 +486,23 @@ mission02AudioButtons.forEach(function (button) {
 });
 
 function checkMission02AudioCompletion() {
-  if (completedMission02Dialogs.size !== 4) {
-    return;
+  if (completedMission02Dialogs.size !== 4) return;
+
+  const completionBox = document.getElementById('mission02AudioComplete');
+  if (completionBox) {
+    completionBox.hidden = false;
+    completionBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  const completionBox =
-    document.getElementById(
-      "mission02AudioComplete"
-    );
+  // PENTING: empat audio hanya melengkapkan checkpoint AUDIO,
+  // BUKAN keseluruhan Mission 02.
+  markMission02Checkpoint('audio');
 
-  completionBox.hidden = false;
-
-  const mission02State = window.ArbloxiaStorage.load();
-  mission02State.mission02Complete = true;
-  window.ArbloxiaStorage.save(mission02State);
-  if (window.ArbloxiaProgress) window.ArbloxiaProgress.render();
-  if (window.ArbloxiaPassport) window.ArbloxiaPassport.render();
-  if (window.ArbloxiaRenderSummitAccess) window.ArbloxiaRenderSummitAccess();
-
-  /*
-    Elakkan ganjaran diberi berulang kali.
-  */
+  // Bunyi checkpoint biasa, bukan bunyi Mission Complete.
   if (!mission02AudioRewardGiven) {
     mission02AudioRewardGiven = true;
-
-    /*
-      Aktifkan baris ini kemudian apabila
-      Progress Mission 02 telah disambungkan.
-    */
-
-    // updateMission02Progress(20, 20);
+    if (window.ArbloxiaAudio) window.ArbloxiaAudio.play('correct');
   }
-
-  const ariaComplete =
-    new Audio(
-      "AUDIO/ARIA/aria_complete.mp3"
-    );
-
-  ariaComplete.play().catch(function () {
-    console.log(
-      "Audio ARIA complete tidak dapat dimainkan."
-    );
-  });
-
-  completionBox.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
 }
 /* =====================================
    MISSION 03 — TERMINAL PERJALANAN
