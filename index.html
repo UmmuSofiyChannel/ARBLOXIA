@@ -2192,5 +2192,50 @@
 })();
 </script>
 
+<script>
+/* ===== ARBLOXIA VISITOR COUNTER · Cloudflare Worker =====
+   Setiap muatan/refresh halaman = +1 penggunaan.
+   API token kekal selamat di Cloudflare Worker, bukan dalam HTML ini.
+*/
+(function(){
+  const visitorEl = document.getElementById('visitorCount');
+  const counterURL = 'https://arbloxia-counter.salwanimd.workers.dev/';
+
+  if (!visitorEl) return;
+
+  fetch(counterURL, {
+    method: 'GET',
+    cache: 'no-store'
+  })
+  .then(function(response){
+    if (!response.ok) throw new Error('Counter HTTP ' + response.status);
+    return response.json();
+  })
+  .then(function(result){
+    // CounterAPI v2 biasanya memulangkan nilai semasa dalam data.up_count.
+    // Beberapa respons/Worker mungkin menggunakan value/count, jadi kita sokong semuanya.
+    const data = result && result.data ? result.data : {};
+    const value =
+      data.up_count ??
+      data.value ??
+      data.count ??
+      result.value ??
+      result.count;
+
+    if (value === undefined || value === null || Number.isNaN(Number(value))) {
+      throw new Error('Nilai kaunter tidak ditemui');
+    }
+
+    visitorEl.textContent = Number(value).toLocaleString('ms-MY');
+    visitorEl.title = 'Jumlah penggunaan/akses ARBLOXIA yang direkodkan';
+  })
+  .catch(function(error){
+    console.error('ARBLOXIA visitor counter:', error);
+    visitorEl.textContent = '—';
+    visitorEl.title = 'Kaunter tidak dapat dihubungi buat sementara waktu';
+  });
+})();
+</script>
+
 </body>
 </html>
