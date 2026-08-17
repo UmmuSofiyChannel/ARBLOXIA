@@ -10,7 +10,7 @@
 
   <title>Jumlah Basitoh | ARBLOXIA</title>
 
-  <script type="text/javascript" src="https://gc.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=eTJbDNoL-pE5_QlpFL4xw9t0u9uGuG6L1-qEFfJmOxFcmO0VC7XDQAqTd0zVY8zbIzIqPbmJKvSNiMtS_5wwAOkOx40Y3Fzo88YYaPvq-B1Y_PFQNWmys46Hjzs_ganWi1f_7Ch9MZgAGhhw2PCRaUgMip8M82TBMawIqjs-u_sJ_QX4oAmKPjYQBjAvCBL-wzVKbkNauflRN6pm40GpvZDO00r7S22VL9HA3Hfq8ModAYqhBcEBM1HsePs7PDC2j6HydOd1ln7AoUEvkKMelKT2_yZ-5JN-l8xTap5psj0x7Un4pe-M6DfpyhZUCRy0LTId7x8pqmxpH6R7phMnag" charset="UTF-8"></script><style>
+  <script type="text/javascript" src="https://gc.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=uETTsMbiEz1F2fIxHSoxL7brjptKMWUjnDUEsQRLvI0ikLuVuIk_OqTS_95W2VHQ-9jrUCW5Ns7abr-tiM68fX2DaStvV07i09Ymzzet1OeveKCD3gAVoec_xO55j0j3B03AsihD5tiOX6lPdhufXsNPxxUyJqcrLoQYDPC6WhLICd9I5cKl1GNaSJvNGi_R6PCV0FKnhQK9na0lpbW4emBRvA9-vwJVPCtHe12xbxPz_teqm-LnAj_3k6WaqixAmToj8TeNel2sR9L_gtblPENjmbKKG1nTfniwIYxidi1twXDvjq5TF7YshsyuDGMhy4QksmMDSorApOl7e6C4wg" charset="UTF-8"></script><style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -362,7 +362,7 @@
     url("IMAGES/arbloxia_mission_hq.png") center center / cover fixed no-repeat;
   padding:28px 18px;color:#fff}
 .hq-screen[hidden]{display:none!important}
-.hq-shell{width:min(1180px,82%);margin:auto;border:1px solid rgba(255,209,92,.55);border-radius:28px;background:rgba(4,20,45,.88);box-shadow:0 25px 80px rgba(0,0,0,.5);overflow:hidden}
+.hq-shell{width:min(1180px,96%);margin:auto;border:1px solid rgba(255,209,92,.55);border-radius:28px;background:rgba(4,20,45,.88);box-shadow:0 25px 80px rgba(0,0,0,.5);overflow:hidden}
 .hq-hero{display:grid;grid-template-columns:220px 1fr 280px;gap:24px;align-items:center;padding:30px;background:linear-gradient(135deg,rgba(17,63,112,.94),rgba(4,20,45,.96));border-bottom:1px solid rgba(56,214,255,.3)}
 .hq-channel-logo{width:190px;max-height:190px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(255,196,34,.35))}
 .hq-welcome{text-align:center}.hq-welcome .arabic{font-family:"Traditional Arabic","Noto Naskh Arabic",serif;font-size:clamp(42px,6vw,72px);line-height:1;color:#ffd15c}.hq-welcome h1{font-size:clamp(28px,4vw,48px);margin:8px 0;color:#fff}.hq-welcome h1 span{color:#ffd15c}.hq-welcome p{color:#d9e7f6;line-height:1.6}
@@ -395,7 +395,52 @@
 .level2-video-copy{text-align:center;margin-bottom:18px}.level2-video-copy span{display:block;color:#53e8a0;font-weight:900;letter-spacing:.12em;font-size:.82rem;margin-bottom:7px}.level2-video-copy h3{color:#ffd15c;font-size:clamp(24px,3vw,34px);margin-bottom:8px}.level2-video-copy p{color:#d9e7f6;line-height:1.6;max-width:760px;margin:auto}
 .level2-learning-video .video-container{max-width:820px;margin:0 auto 14px}.level2-learning-video .video-link-button{max-width:820px;margin:0 auto;display:block;text-align:center;text-decoration:none}
 @media(max-width:650px){.level2-learning-video{padding:16px}.hq-screen{background-attachment:scroll}}
+/* ==================================================
+   ARBLOXIA HQ - PAPARAN 100% RESPONSIF
+   ================================================== */
 
+.hq-screen{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: auto;
+
+  background:
+    linear-gradient(
+      rgba(1,10,25,.28),
+      rgba(1,10,25,.38)
+    ),
+    url("IMAGES/arbloxia_mission_hq.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  padding: 28px 18px;
+  color: #fff;
+}
+
+..hq-shell{
+  width: min(1180px, 82%);
+  margin: auto;
+  border: 1px solid rgba(255,209,92,.55);
+  border-radius: 28px;
+
+  background: rgba(4,20,45,.88);
+
+  box-shadow: 0 25px 80px rgba(0,0,0,.5);
+  overflow: hidden;
+}
+
+.hq-hero{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(17,63,112,.88),
+      rgba(4,20,45,.90)
+    );
+}
 </style>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -2123,30 +2168,29 @@
 </script>
 
 
-  <script>
-    (function () {
-      const backToMissionMap = document.getElementById('backToMissionMap');
-      if (!backToMissionMap) return;
+<script>
+(function(){
+  const backBtn = document.getElementById('backToMissionMap');
+  const hq = document.getElementById('arbloxiaHQ');
+  if(!backBtn || !hq) return;
 
-      backToMissionMap.addEventListener('click', function (event) {
-        event.preventDefault();
+  backBtn.addEventListener('click', function(e){
+    e.preventDefault();
 
-        document.querySelectorAll('.mission-panel').forEach(function (panel) {
-          panel.classList.remove('active');
-        });
+    document.querySelectorAll('.mission-panel').forEach(function(panel){
+      panel.classList.remove('active');
+    });
 
-        const hq = document.getElementById('arbloxiaHQ');
-        if (hq) {
-          hq.hidden = false;
-          document.body.style.overflow = 'hidden';
-          hq.scrollTop = 0;
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          window.location.href = './index.html';
-        }
-      });
-    })();
-  </script>
+    hq.hidden = false;
+    document.body.style.overflow = 'hidden';
+    hq.scrollTop = 0;
+
+    if(window.history && window.history.replaceState){
+      window.history.replaceState({}, '', 'index.html');
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
