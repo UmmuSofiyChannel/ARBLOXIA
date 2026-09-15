@@ -1,20 +1,19 @@
-ARBLOXIA — WEBSITE v3 (Mission 03)
+MISSION 03 — SOUND HUNT PATCH
 
-Yang telah disiapkan:
-1. Ralat blok "Checkpoint Audio Selesai" Mission 02 yang berulang telah dibuang.
-2. Mission 03 — Terminal Perjalanan telah dibina sebagai aktiviti berlainan:
-   - 4 checkpoint pilihan visual/emoji
-   - Maklum balas betul/salah
-   - Ganjaran 5 XP bagi setiap checkpoint
-   - Jawapan Arab muncul selepas jawapan betul
-   - Travel Passport selepas semua checkpoint selesai
-   - Paparan responsif untuk telefon dan komputer
-3. Butang audio guru disediakan dengan nama fail berikut:
-   AUDIO/GURU/mission03_dialog01.m4a
-   AUDIO/GURU/mission03_dialog02.m4a
-   AUDIO/GURU/mission03_dialog03.m4a
-   AUDIO/GURU/mission03_dialog04.m4a
+1. Pastikan folder FIDAII anda sudah ada:
+   images/puzzle-malaysia.png
+   audio/SOUND-HUNT/sound01-alam.m4a
+   audio/SOUND-HUNT/sound02-malik.m4a
+   audio/SOUND-HUNT/sound03-asimah.m4a
+   audio/SOUND-HUNT/sound04-wilayah.m4a
+   audio/SOUND-HUNT/sound05-nasyid-watani.m4a
+   audio/SOUND-HUNT/sound06-nasyid-wilayah.m4a
 
-Nota:
-- Jika fail audio belum dimasukkan, sistem akan memaparkan "Audio belum dimasukkan" tanpa merosakkan misi.
-- Video AI Mission 03 belum dimasukkan kerana pautan video belum diberikan.
+2. Salin 3 fail ini ke folder FIDAII utama dan REPLACE fail lama:
+   index.html
+   style.css
+   game.js
+
+3. Jangan padam folder images atau audio.
+4. Buka melalui Live Server dan tekan Ctrl+F5.
+5. Jika mahu test dari awal, tekan Reset Progress.
