@@ -421,7 +421,7 @@
   color: #fff;
 }
 
-..hq-shell{
+.hq-shell{
   width: min(1180px, 82%);
   margin: auto;
   border: 1px solid rgba(255,209,92,.55);
@@ -490,7 +490,27 @@
         <div class="hq-worlds">
           <article class="hq-world active"><div><div>🌍 WORLD 1</div><h3 class="world-ar">الجُمْلَةُ الْبَسِيطَةُ</h3><p>Jumlah Basitoh</p></div><div class="world-status">🏅 Travel Master</div></article>
           <article class="hq-world active"><div><div>🌍 WORLD 2</div><h3 class="world-ar">الجُمْلَةُ الْمُتَنَاسِقَةُ</h3><p>Jumlah Mutanasiqah</p></div><div class="world-status">🧠 Sentence Architect</div></article>
-          <article class="hq-world locked"><div><div>🌍 WORLD 3</div><h3 class="world-ar">الحِوَارُ</h3><p>Hiwar</p></div><div class="world-status">🔒 Akan datang</div></article>
+ <article class="hq-world locked" id="world3Card">
+  <div>
+    <div>🌍 WORLD 3</div>
+    <h3 class="world-ar" lang="ar" dir="rtl">الْكَلِمَةُ</h3>
+    <p>Kalimah</p>
+    <p class="world3-topic" lang="ar" dir="rtl">فِدَائِي يَا وَطَنِي</p>
+  </div>
+
+  <div class="world-status" id="world3Status">
+    🔓 Misi baharu
+  </div>
+
+<button type="button" id="openWorld3Button">
+    🚀 MASUK WORLD 3
+</button>
+
+</article>
+
+
+
+ 
           <article class="hq-world locked"><div><div>🌍 WORLD 4</div><h3 class="world-ar">القِرَاءَةُ</h3><p>Qiraah</p></div><div class="world-status">🔒 Akan datang</div></article>
           <article class="hq-world locked"><div><div>🌍 WORLD 5</div><h3 class="world-ar">الكِتَابَةُ</h3><p>Kitabah</p></div><div class="world-status">🔒 Akan datang</div></article>
         </div>
@@ -512,7 +532,31 @@
     </div>
   </section>
 
+<!-- WORLD 3 : FIDAI YA WATONI -->
+<section id="world3Content" class="world3-content" hidden>
 
+  <div class="world3-hero">
+
+    <span class="world3-kicker">
+      🇲🇾 WORLD 3 · MISI BAHARU
+    </span>
+
+    <h2>فِدَائِي يَا وَطَنِي</h2>
+
+    <h3>الكَلِمَةُ</h3>
+
+    <p>
+      Selamat datang ke World 3. Kenali dan kuasai kalimah
+      bagi tajuk فِدَائِي يَا وَطَنِي.
+    </p>
+
+    <button type="button" id="returnWorld3HQ">
+      🏠 KEMBALI KE HQ
+    </button>
+
+  </div>
+
+</section>
 
   <!-- GALERI KAD EJEN ARBLOXIA -->
   <section id="agentCardsModal" class="agent-card-modal" hidden aria-modal="true" role="dialog" aria-labelledby="agentCardsTitle">
@@ -2236,6 +2280,6 @@
   });
 })();
 </script>
-
+<script src="world3.js"></script>
 </body>
 </html>

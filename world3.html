@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>World 3 | ARBLOXIA: اِنْطَلِقْ!</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial, sans-serif;
+    color:#fff;
+    background:
+        radial-gradient(circle at top,#123e68 0%,#061d39 45%,#020c1c 100%);
+}
+
+.world3{
+    width:min(1180px,94%);
+    margin:auto;
+    padding:30px 0 60px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.back-btn{
+    border:1px solid #28e8b2;
+    background:#06355a;
+    color:white;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.counter{
+    background:#061a33;
+    border:1px solid #18bde8;
+    padding:10px 18px;
+    border-radius:12px;
+    color:#53ddff;
+}
+
+.hero{
+    text-align:center;
+    border:1px solid #16bde8;
+    border-radius:24px;
+    padding:38px 20px;
+    background:rgba(4,30,59,.92);
+    box-shadow:0 0 35px rgba(0,207,255,.10);
+}
+
+.kicker{
+    color:#46dcff;
+    letter-spacing:4px;
+    font-size:13px;
+}
+
+.hero h1{
+    color:#ffd338;
+    font-size:clamp(35px,6vw,64px);
+    margin:15px 0 5px;
+}
+
+.arabic{
+    direction:rtl;
+    font-size:clamp(34px,5vw,55px);
+    color:#55dcff;
+    margin:15px 0;
+}
+
+.hero h2{
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#c9d8e8;
+    line-height:1.7;
+    max-width:750px;
+    margin:auto;
+}
+
+.agent{
+    margin:25px 0;
+    padding:18px 20px;
+    border:1px solid #20dca7;
+    border-radius:16px;
+    background:#06233e;
+}
+
+.agent-title{
+    color:#3cf1b8;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.agent-message{
+    margin-top:8px;
+    line-height:1.6;
+}
+
+.section-title{
+    text-align:center;
+    color:#52dcff;
+    margin:38px 0 20px;
+    font-size:28px;
+}
+
+.mission-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.mission{
+    background:#06284b;
+    border:1px solid #167da9;
+    border-radius:20px;
+    padding:25px;
+    min-height:210px;
+    position:relative;
+}
+
+.mission.active{
+    border-color:#25e7aa;
+    box-shadow:0 0 22px rgba(37,231,170,.12);
+}
+
+.mission.locked{
+    opacity:.55;
+}
+
+.mission-number{
+    color:#50dcff;
+    font-size:13px;
+    letter-spacing:2px;
+}
+
+.mission h3{
+    color:#ffd23f;
+    margin:10px 0;
+    font-size:24px;
+}
+
+.mission p{
+    color:#d2dfeb;
+    line-height:1.6;
+}
+
+.play-btn{
+    display:inline-block;
+    margin-top:18px;
+    padding:12px 18px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(90deg,#12bce6,#2c8cf2);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.lock{
+    margin-top:20px;
+    color:#a9b5c3;
+}
+
+.video-panel{
+    display:none;
+    margin-top:25px;
+    padding:20px;
+    background:#041a32;
+    border:1px solid #24e5ad;
+    border-radius:20px;
+}
+
+.video-panel.show{
+    display:block;
+}
+
+.video-wrap{
+    position:relative;
+    width:100%;
+    padding-top:56.25%;
+    overflow:hidden;
+    border-radius:15px;
+}
+
+.video-wrap iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.close-btn{
+    margin-top:15px;
+    padding:10px 16px;
+    border:1px solid #37e6b5;
+    background:#073859;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.footer{
+    text-align:center;
+    color:#7692aa;
+    margin-top:45px;
+    font-size:13px;
+}
+
+@media(max-width:750px){
+    .mission-grid{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        align-items:stretch;
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="world3">
+
+    <div class="topbar">
+        <button class="back-btn" onclick="location.href='index.html'">
+            🏠 KEMBALI KE HQ
+        </button>
+
+        <div class="counter">
+            👥 Akses World 3:
+            <strong id="world3Counter">...</strong>
+        </div>
+    </div>
+
+    <section class="hero">
+
+        <div class="kicker">
+            ARBLOXIA : اِنْطَلِقْ! • WORLD 3
+        </div>
+
+        <h1>KALIMAH CITY</h1>
+
+        <div class="arabic">
+            فِدَائِي يَا وَطَنِي
+        </div>
+
+        <h2>الْكَلِمَةُ • KALIMAH</h2>
+
+        <p>
+            Terokai Kalimah City, kuasai kosa kata Bahasa Arab
+            dan lengkapkan misi untuk membuka cabaran seterusnya.
+        </p>
+
+    </section>
+
+    <section class="agent">
+
+        <div class="agent-title">
+            🤖 ARIA • SYSTEM ONLINE
+        </div>
+
+        <div class="agent-message">
+            “Selamat datang, Ejen ARBLOXIA. World 3 telah diaktifkan.
+            Misi pertama anda ialah menguasai kalimah bagi tajuk
+            <strong>فِدَائِي يَا وَطَنِي</strong>.”
+        </div>
+
+    </section>
+
+    <h2 class="section-title">
+        🗺️ PETA MISI KALIMAH CITY
+    </h2>
+
+    <section class="mission-grid">
+
+        <article class="mission active">
+            <div class="mission-number">MISSION 01</div>
+            <h3>🎵 MUSIC PORTAL</h3>
+            <p>
+                Masuki portal muzik. Dengar, lihat dan ikut menyebut
+                kalimah melalui Lagu Kalimah ARBLOXIA.
+            </p>
+
+            <button class="play-btn" id="openMusic">
+                🚀 MULAKAN MISI
+            </button>
+        </article>
+
+        <article class="mission locked">
+            <div class="mission-number">MISSION 02</div>
+            <h3>🧩 PUZZLE QUEST</h3>
+            <p>
+                Susun puzzle dan kenal pasti kalimah Bahasa Arab
+                yang betul.
+            </p>
+            <div class="lock">🔒 Selesaikan Mission 01</div>
+        </article>
+
+        <article class="mission locked">
+            <div class="mission-number">MISSION 03</div>
+            <h3>🎧 SOUND HUNT</h3>
+            <p>
+                Dengar audio dan buru objek yang sepadan
+                di Kalimah City.
+            </p>
+            <div class="lock">🔒 Belum dibuka</div>
+        </article>
+
+        <article class="mission locked">
+            <div class="mission-number">MISSION 04</div>
+            <h3>🃏 IDENTITY MATCH</h3>
+            <p>
+                Padankan identiti dan karakter dengan kalimah
+                Bahasa Arab yang tepat.
+            </p>
+            <div class="lock">🔒 Belum dibuka</div>
+        </article>
+
+    </section>
+
+    <section id="videoPanel" class="video-panel">
+
+        <h2 style="color:#ffd23f;margin-bottom:15px;">
+            🎵 MISSION 01 • MUSIC PORTAL
+        </h2>
+
+        <p style="margin-bottom:18px;line-height:1.6;">
+            Ejen, dengar lagu dengan teliti. Ikut menyebut setiap
+            kalimah yang dipaparkan.
+        </p>
+
+        <div class="video-wrap">
+            <iframe
+                src="https://www.youtube.com/embed/ZTZlVEHd8UA?rel=0"
+                title="Lagu Kalimah ARBLOXIA"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <button class="close-btn" id="closeMusic">
+            ← KEMBALI KE PETA MISI
+        </button>
+
+    </section>
+
+    <div class="footer">
+        ARBLOXIA: اِنْطَلِقْ! • Mission-Based Gamification •
+        Muallimah Ummu Sofiy • #SimpleTapiSampai
+    </div>
+
+</main>
+
+<script>
+const openMusic = document.getElementById('openMusic');
+const closeMusic = document.getElementById('closeMusic');
+const videoPanel = document.getElementById('videoPanel');
+
+openMusic.addEventListener('click', function () {
+    videoPanel.classList.add('show');
+
+    videoPanel.scrollIntoView({
+        behavior:'smooth',
+        block:'start'
+    });
+});
+
+closeMusic.addEventListener('click', function () {
+    videoPanel.classList.remove('show');
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+});
+
+/*
+  Kaunter World 3 akan kita sambungkan
+  kepada sistem kaunter ARBLOXIA selepas
+  halaman asas ini disahkan berfungsi.
+*/
+document.getElementById('world3Counter').textContent = '—';
+</script>
+
+</body>
+</html>
