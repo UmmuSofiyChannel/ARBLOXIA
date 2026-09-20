@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ms" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARBLOXIA: اِنْطَلِقْ! — فِدَائِي يَا وَطَنِي</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<section id="coverScreen" class="screen coverScreen active">
+  <div class="coverStage">
+    <img src="images/cover-arbloxia.png" alt="Cover ARBLOXIA: Intaliq - Fidaii Ya Watani" class="coverImage">
+    <button id="startAdventure" class="coverStart">🚀 MULAKAN MISI</button>
+  </div>
+</section>
+<section id="agentScreen" class="screen">
+  <div class="brand">ARBLOXIA: <span lang="ar">اِنْطَلِقْ!</span></div>
+  <div class="tag">فِدَائِي يَا وَطَنِي • GAME-BASED MISSION ADVENTURE</div>
+  <div class="panel hero">
+    <h1>CHOOSE YOUR AGENT</h1><p>Pilih ejen, masukkan nama dan mulakan pengembaraan.</p>
+    <div class="agents">
+      <button class="agent" data-agent="lelaki"><span class="avatar"><img src="images/agent-male.png" alt="Ejen lelaki Roblox"></span><b>EJEN LELAKI</b><small>عَمِيلٌ</small></button>
+      <button class="agent" data-agent="perempuan"><span class="avatar"><img src="images/agent-female.png" alt="Ejen perempuan Roblox berhijab"></span><b>EJEN PEREMPUAN</b><small>عَمِيلَةٌ</small></button>
+    </div>
+    <label class="nameLabel">NAMA EJEN</label><input id="agentName" maxlength="30" placeholder="Taip nama ejen...">
+    <button id="enterBtn" class="primary" disabled>🚀 MASUK KALIMAH CITY</button>
+  </div>
+</section>
+<section id="lobbyScreen" class="screen">
+
+  <div class="world3-counter">
+    <span>👥 AKSES WORLD 3</span>
+    <strong id="world3Counter">...</strong>
+  </div>
+  <header class="topbar"><div><b>🇲🇾 KALIMAH CITY</b><small> مَدِينَةُ الْكَلِمَاتِ</small></div><div class="stats">⭐ <span id="xp">0</span> XP &nbsp; 🏅 <span id="badgeCount">0</span></div></header>
+  <div class="welcome"><div id="miniAvatar">🧑🏻</div><div><small>WELCOME, AGENT</small><h2 id="welcomeName">EJEN</h2><p>مَهَمَّتُكَ تَبْدَأُ الآنَ! • Misi anda bermula sekarang!</p></div></div>
+  <div class="worldTitle"><span>WORLD 1</span><h1>مَدِينَةُ الْكَلِمَاتِ</h1><p>KALIMAH CITY • Explore → Play → Collect → Unlock</p></div>
+  <div class="map">
+    <button class="mission open" data-mission="1"><span>🎵</span><b>MISSION 01</b><em>MUSIC PORTAL</em><small>OPEN</small></button>
+    <div class="path">•••••</div>
+    <button class="mission locked" data-mission="2"><span>🧩</span><b>MISSION 02</b><em>PUZZLE QUEST</em><small>🔒 LOCKED</small></button>
+    <div class="path">•••••</div>
+    <button class="mission locked" data-mission="3"><span>🎧</span><b>MISSION 03</b><em>SOUND HUNT</em><small>🔒 LOCKED</small></button>
+    <div class="path">•••••</div>
+    <button class="mission locked" data-mission="4"><span>🃏</span><b>MISSION 04</b><em>IDENTITY MATCH</em><small>🔒 LOCKED</small></button>
+    <div class="path">•••••</div>
+    <button class="mission boss locked" data-mission="boss"><span>👑</span><b>BOSS MISSION</b><em>KALIMAH BATTLE</em><small>🔒 LOCKED</small></button>
+  </div>
+  <div class="inventory"><b>🎒 INVENTORY</b><span>Belum ada item dikumpul.</span><button id="resetBtn">Reset Progress</button></div>
+  <div class="world2"><b>🔒 WORLD 2</b><span lang="ar">الجُمْلَةُ الْبَسِيطَةُ</span><small>Selesaikan Boss Mission untuk membuka World 2.</small></div>
+</section>
+<section id="musicScreen" class="screen">
+ <button id="backLobby" class="back">← Kembali ke Kalimah City</button>
+ <div class="panel missionPage"><div class="missionIcon">🎵</div><p class="eyebrow">MISSION 01</p><h1>MUSIC PORTAL</h1><h2>بَوَّابَةُ الْأُغْنِيَةِ</h2>
+ <p>Dengar, baca dan ikut lagu <b>فِدَائِي يَا وَطَنِي</b> bersama ahli kumpulan.</p>
+ <div class="video"><iframe src="https://www.youtube.com/embed/ZTZlVEHd8UA?rel=0" title="ARBLOXIA Fidaii Ya Watani" allowfullscreen></iframe></div>
+ <div class="rules">🎯 <b>MISI:</b> Semua ahli kumpulan mesti terlibat. Selepas selesai menonton dan mengikuti lagu, tekan butang di bawah.</div>
+ <button id="completeMusic" class="primary">⭐ MISSION 01 COMPLETE</button>
+ </div>
+</section>
+<section id="puzzleScreen" class="screen">
+ <button id="backPuzzleLobby" class="back">← Kembali ke Kalimah City</button>
+ <div class="panel missionPage puzzlePage">
+  <div class="missionIcon">🧩</div><p class="eyebrow">MISSION 02</p><h1>PUZZLE QUEST</h1><h2>تَحَدِّي الْكَلِمَاتِ</h2>
+  <p>Susun semula <b>Master Puzzle Malaysia</b> sehingga lengkap. Seret kepingan dan tukarkan kedudukannya.</p>
+  <div class="puzzleHud"><span>🇲🇾 MASTER PUZZLE MALAYSIA</span><b id="moveCount">0 MOVES</b></div>
+  <div id="puzzleBoard" class="puzzleBoard" aria-label="Puzzle Malaysia 3 kali 3"></div>
+  <div class="puzzleActions"><button id="shufflePuzzle" class="secondary">🔀 Acak Semula</button><button id="previewPuzzle" class="secondary">👁️ Lihat Gambar</button></div>
+  <div id="previewBox" class="previewBox"><img src="images/puzzle-malaysia.png" alt="Master Puzzle Malaysia"></div>
+  <div id="puzzleWin" class="puzzleWin hidden"><h3>🎉 MALAYSIA RESTORED!</h3><p>+100 XP • 🔓 KALIMAH CHALLENGE UNLOCKED</p><button id="startKalimah" class="primary">⚡ MULAKAN KALIMAH CHALLENGE</button></div>
+  <div id="kalimahChallenge" class="kalimahChallenge hidden">
+   <p class="eyebrow">BONUS CHALLENGE</p><h2>🔎 KENALI KALIMAH</h2><p id="challengePrompt"></p><div id="answerChoices" class="answerChoices"></div><div id="challengeFeedback" class="challengeFeedback"></div>
+  </div>
+ </div>
+</section>
+
+<section id="soundScreen" class="screen">
+ <button id="backSoundLobby" class="back">← Kembali ke Kalimah City</button>
+ <div class="panel missionPage soundPage">
+  <div class="missionIcon">🎧</div><p class="eyebrow">MISSION 03</p><h1>SOUND HUNT</h1><h2>مُطَارَدَةُ الصَّوْتِ</h2>
+  <p>Dengar isyarat audio. Cari dan klik kawasan yang sepadan pada <b>Kalimah City Map</b>.</p>
+  <div class="soundHud">
+   <span>🎯 TARGET <b id="soundProgress">1 / 6</b></span>
+   <span>⭐ <b id="soundXpEarned">0</b> XP DIKUMPUL</span>
+  </div>
+  <div class="soundSignal">
+   <div class="signalIcon">📡</div>
+   <div><b>SOUND SIGNAL DETECTED!</b><small>Dengar dengan teliti. Tulisan Arab hanya muncul selepas target ditemui.</small></div>
+   <button id="playSound" class="primary soundPlay">🔊 DENGAR AUDIO</button>
+  </div>
+  <div class="soundMapWrap">
+   <img src="images/puzzle-malaysia.png" alt="Peta visual Kalimah City Malaysia" class="soundMapImage">
+   <button class="soundHotspot hs-malik" data-target="malik" aria-label="Target Raja"></button>
+   <button class="soundHotspot hs-alam" data-target="alam" aria-label="Target Bendera"></button>
+   <button class="soundHotspot hs-asimah" data-target="asimah" aria-label="Target Ibu Negara"></button>
+   <button class="soundHotspot hs-wilayah" data-target="wilayah" aria-label="Target Negeri"></button>
+   <button class="soundHotspot hs-watani" data-target="watani" aria-label="Target Lagu Kebangsaan"></button>
+   <button class="soundHotspot hs-wilayah-song" data-target="wilayah-song" aria-label="Target Lagu Negeri"></button>
+  </div>
+  <div class="soundLegend">
+   <span>👂 Dengar</span><span>🔎 Cari</span><span>👆 Klik</span><span>✨ Kumpul Kalimah</span>
+  </div>
+  <div id="soundFeedback" class="soundFeedback">Tekan <b>🔊 DENGAR AUDIO</b> untuk memulakan pemburuan.</div>
+  <div id="soundReveal" class="soundReveal hidden"></div>
+  <div id="soundComplete" class="soundComplete hidden"></div>
+ </div>
+</section>
+
+<section id="identityScreen" class="screen">
+ <button id="backIdentityLobby" class="back">← Kembali ke Kalimah City</button>
+ <div class="panel missionPage identityPage">
+  <div class="missionIcon">🃏</div><p class="eyebrow">MISSION 04</p><h1>IDENTITY MATCH</h1><h2>تَحَدِّي الْهُوِيَّةِ</h2>
+  <p>Padankan identiti masyarakat Malaysia, kemudian bezakan bentuk <b>مُذَكَّر</b> dan <b>مُؤَنَّث</b>.</p>
+
+  <div class="identityHud"><span>🧩 FASA <b id="identityPhase">1 / 2</b></span><span>⭐ <b id="identityXpEarned">0</b> XP DIKUMPUL</span></div>
+
+  <div id="identityPhase1" class="identityPhaseBlock">
+   <div class="identityHeader"><b>FASA 1 — CULTURE MATCH</b><small>Seret kad Arab ke gambar masyarakat yang betul.</small></div>
+   <div class="cultureBoard">
+    <div class="cultureTarget crop-malay" data-answer="malay"><span>🇲🇾</span><b>MELAYU</b><em>Letak kad di sini</em></div>
+    <div class="cultureTarget crop-chinese" data-answer="chinese"><span>🏮</span><b>CINA</b><em>Letak kad di sini</em></div>
+    <div class="cultureTarget crop-indian" data-answer="indian"><span>🪔</span><b>INDIA</b><em>Letak kad di sini</em></div>
+    <div class="cultureTarget crop-indigenous" data-answer="indigenous"><span>🌿</span><b>ORANG ASLI</b><em>Letak kad di sini</em></div>
+   </div>
+   <div id="identityCards" class="identityCards"></div>
+   <div id="identityFeedback" class="identityFeedback">Seret satu kad Arab ke gambar yang sepadan.</div>
+  </div>
+
+  <div id="identityPhase2" class="identityPhaseBlock hidden">
+   <div class="identityHeader"><b>FASA 2 — GENDER SWITCH</b><small>Pilih bentuk Arab yang betul berdasarkan identiti dan jantina.</small></div>
+   <div class="genderArena">
+    <div id="genderAvatar" class="genderAvatar">👦🏻</div>
+    <div id="genderPrompt" class="genderPrompt"></div>
+    <div id="genderChoices" class="genderChoices"></div>
+    <div id="genderFeedback" class="identityFeedback"></div>
+   </div>
+  </div>
+
+  <div id="identityComplete" class="identityComplete hidden"></div>
+ </div>
+</section>
+
+<section id="certificateScreen" class="screen">
+ <button id="backCertificate" class="back">← Kembali ke Kalimah City</button>
+ <div class="certificateWrap">
+  <div id="certificateCard" class="certificateCard certificateArtwork">
+   <img src="images/certificate-kalimah-master.png" alt="Sijil Pencapaian Kalimah Master" class="certificateBg">
+   <div id="certificateName" class="certificateNameOverlay">EJEN</div>
+  </div>
+  <div class="certActions"><button id="printCertificate" class="primary">🖨️ CETAK / SIMPAN PDF</button><button id="certToLobby" class="secondary">🏙️ KEMBALI KE KALIMAH CITY</button></div>
+ </div>
+</section>
+<section id="bossScreen" class="screen">
+ <button id="backBossLobby" class="back">← Kembali ke Kalimah City</button>
+ <div class="panel missionPage bossPage">
+  <div class="missionIcon">👑</div><p class="eyebrow">BOSS MISSION</p><h1>KALIMAH BATTLE</h1><h2>مَعْرَكَةُ الْكَلِمَاتِ</h2>
+  <p>Gunakan semua kemahiran yang telah dikumpul untuk menewaskan <b>Kalimah Boss</b>.</p>
+  <div class="bossHud"><span>⚔️ ROUND <b id="bossRound">1 / 3</b></span><span>⭐ <b id="bossXpEarned">0</b> XP</span></div>
+  <div class="bossArena">
+   <div class="bossCharacter" id="bossCharacter">👾</div>
+   <div class="hpLabel"><b>👑 BOSS HP</b><span id="bossHpText">100 / 100</span></div>
+   <div class="hpTrack"><div id="bossHpBar" class="hpBar"></div></div>
+   <div id="bossRoundTitle" class="bossRoundTitle">⚡ ROUND 1 — QUICK STRIKE</div>
+   <div id="bossPrompt" class="bossPrompt"></div>
+   <button id="bossAudioBtn" class="primary bossAudio hidden">🔊 DENGAR AUDIO</button>
+   <div id="bossChoices" class="bossChoices"></div>
+   <div id="bossFeedback" class="bossFeedback">Bersedia, Ejen!</div>
+  </div>
+  <div id="bossComplete" class="bossComplete hidden"></div>
+ </div>
+</section>
+
+</main>
+<script src="game.js"></script>
+
+<script>
+console.log("FIDAII WORLD 3 READY");
+</script>
+<script>
+(function () {
+  const COUNTER_URL = "https://arbloxia-counter.salwanimd.workers.dev/";
+  const counterDisplay = document.getElementById("world3Counter");
+
+  fetch(COUNTER_URL)
+    .then(response => response.json())
+    .then(data => {
+      console.log("FIDAII COUNTER:", data);
+
+ const value = data.data?.up_count;
+
+      if (counterDisplay && value !== undefined) {
+        counterDisplay.textContent =
+          Number(value).toLocaleString("ms-MY");
+      }
+    })
+    .catch(error => {
+      console.error("FIDAII COUNTER ERROR:", error);
+
+      if (counterDisplay) {
+        counterDisplay.textContent = "—";
+      }
+    });
+})();
+</script>
+
+</body></html>
